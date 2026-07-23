@@ -21,5 +21,8 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Make installer executable
+        run: chmod +x scripts/install.sh
+
       - name: Run test suite
         run: python tests/run_tests.py
