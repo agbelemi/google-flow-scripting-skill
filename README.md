@@ -117,7 +117,7 @@ Mechanical checks only. The judgement checks — final-frame chain, handoff clas
 
 **It validates your prompts, including inside code fences.** That is where prompts normally live, so that is what gets checked. Documentation that quotes bad patterns on purpose opts out with `<!-- validate:ignore-file -->`, or per-block with a fence tagged ```` ```example ````.
 
-**It is covered by regression and integration tests.** `python tests/run_tests.py` currently runs 22 checks, including malformed ordering, duplicate beats, multiple segments, pure JSON output, native Skill installation and backup preservation. Those exist to catch false negatives — a validator that silently passes broken input is worse than none, because it turns "I should check this" into "it passed".
+**It is covered by regression and integration tests.** `python tests/run_tests.py` currently runs 24 checks, including malformed ordering, duplicate beats, multiple segments, pure JSON output, native Skill installation and backup preservation. Those exist to catch false negatives — a validator that silently passes broken input is worse than none, because it turns "I should check this" into "it passed".
 
 ---
 
