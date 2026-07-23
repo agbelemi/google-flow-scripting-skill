@@ -1,0 +1,48 @@
+{
+  "name": "Google Flow Scripting & Prompting Skill",
+  "version": "1.3.1",
+  "author": "Agbelemi",
+  "repository": "https://github.com/agbelemi/google-flow-scripting-skill",
+  "license": "MIT",
+  "entrypoint": "SKILL.md",
+  "divisions": [
+    {
+      "id": "core",
+      "name": "Core Craft",
+      "description": "Format-agnostic workflow resources used across projects.",
+      "requires": [],
+      "agents": [
+        "flow-orchestrator",
+        "flow-story-architect",
+        "flow-asset-manager",
+        "flow-storyboard-director",
+        "flow-continuity-auditor"
+      ]
+    },
+    {
+      "id": "formats",
+      "name": "Format Specialists",
+      "description": "Format-specific craft resources selected for the project.",
+      "requires": ["core"],
+      "agents": [
+        "flow-3d-animation",
+        "flow-2d-animation",
+        "flow-live-action",
+        "flow-documentary",
+        "flow-ads",
+        "flow-music-video"
+      ]
+    }
+  ],
+  "documentation_review": {
+    "date": "2026-07-23",
+    "scope": "Official Google Flow/Veo and host-tool Skill documentation",
+    "record": "reference/VERIFICATION.md"
+  },
+  "packaging": {
+    "claude-code": "native SKILL.md package; optional native subagents",
+    "cursor": "native project Agent Skill",
+    "windsurf": "native workspace Skill",
+    "generic": "portable SKILL.md folder"
+  }
+}
