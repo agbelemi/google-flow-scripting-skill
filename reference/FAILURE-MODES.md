@@ -10,7 +10,7 @@
 | **DOC** | Described in vendor documentation or official guidance |
 | **INF** | Inferred from how the system works, and consistent with reports, but not directly verified here |
 
-Treat OBS rows as established, DOC rows as authoritative-but-versioned, and INF rows as strong hypotheses. Cause-and-effect in generative systems is rarely provable from a handful of runs — a fix that works may be correlated with the cause rather than addressing it.
+Treat OBS rows as established, DOC rows as authoritative-but-versioned, and INF rows as strong hypotheses. Cause-and-effect in generative systems is rarely provable from a handful of runs. A fix that works may be correlated with the cause rather than addressing it.
 
 If you verify or disprove an INF row, please open an issue. That is the single most useful contribution to this repository.
 
@@ -36,16 +36,21 @@ If you verify or disprove an INF row, please open an issue. That is the single m
 | Character drifts despite a reference image | Prompt re-describes what the reference shows, and the two disagree | Let the reference carry appearance. Describe only state, action and held objects | DOC |
 | Reference drags an unwanted background into the shot | Reference image had a busy background | Regenerate references on a plain or segmented background | DOC |
 | Credits exhausted early | Every generation run at top quality | Draft on the fastest tier, commit only approved shots to the highest. Budget 3-5 attempts per segment | DOC |
-| Script cannot be generated at all | Written in 10-second segments | Only 4, 6 and 8 seconds exist. Rebuild the structure on a supported length | DOC |
+| Script cannot be generated at the chosen length | Segment length does not match the selected model | Flow durations depend on model: Veo Lite/Fast 4, 6 or 8 seconds, Veo Quality 8 seconds, and Omni Flash 4, 6, 8 or 10 seconds. Pick the surface and model first | OBS |
 | Output is the wrong shape | Project planned for 1:1, 4:3 or 2.39:1 | Only 16:9 and 9:16 generate natively. Choose one and crop in post if you need another | DOC |
 | Vertical version feels cropped and cramped | Horizontal master cropped to vertical | Generate hero shots natively vertical, with action in the centre band | DOC |
 | Extended clip drifts away from the original | Extend compounds small errors across each continuation | Prefer separate segments with explicit final frames. Reserve Extend for actions that genuinely cannot cut | INF |
 | Frames-to-Video transition looks unstable | Start and end frames too far apart | Keep the two frames compositionally close; large jumps in framing or colour destabilise the interpolation | DOC |
 | Edits stop working on a clip | Some edit modes cannot be applied after extending | Do inserts and removals before extending, not after | DOC |
+| Plate characters do not match the rest of the film | Plate was written as a text description instead of compositing existing references | Attach the existing character references and instruct the model to preserve them exactly | OBS |
+| Plate shows duplicated figures | A turnaround sheet was fed in whole | Crop one clean front-facing view per character before compositing | INF |
+| Script cannot be generated at the intended length | Surface, model, mode, or duration was chosen after the script was written | Confirm the full generation profile first. Flow Omni supports 4, 6, 8, or 10 seconds; Veo and feature-specific modes have narrower profiles | DOC |
+| Long prompts are partly ignored | Important instructions are buried in a large prompt | Shorten before rewriting. Let references carry appearance, keep actions unambiguous, and retain only plausible exclusions | INF |
+| A character had to be dropped from a busy Veo reference shot | Veo reference-image limit was reached without trying an image-built plate | Composite approved supporting references into one plate and keep the lead in a dedicated slot when possible. Do not impose this Veo limit on Omni | OBS |
 
 ---
 
-## The two most expensive mistakes
+## The three most expensive mistakes
 
 **1. Trusting words over handles.** Every character you describe rather than reference is a character that will change. When in doubt, make the handle. Assets are cheap and generated once.
 
@@ -55,4 +60,4 @@ If you verify or disprove an INF row, please open an issue. That is the single m
 
 ---
 
-*Part of the Google Flow Scripting & Prompting Skill — https://github.com/agbelemi/google-flow-scripting-skill*
+*Part of the Google Flow Scripting and Prompting Skill: https://github.com/agbelemi/google-flow-scripting-skill*

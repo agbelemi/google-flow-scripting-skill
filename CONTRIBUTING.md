@@ -1,73 +1,120 @@
 # Contributing
 
-Thanks for helping. This repository gets better mainly through people hitting faults in real production and writing them down.
+Thanks for improving the project. The most useful contributions come from real production failures, reproducible validator cases, and corrections backed by current primary documentation.
 
-## The most valuable contribution: a new failure mode
+## Before changing anything
 
-If you hit a generation fault this repo does not cover, open an issue with:
+1. Read `SKILL.md` and `reference/PLAYBOOK.md`.
+2. Read `reference/VERIFICATION.md` before changing platform claims.
+3. Keep every generated character and location reference in canonical `@PascalCase` form.
+4. Do not introduce the Unicode em dash character anywhere in the package.
+5. Do not silently rewrite an old release record.
 
-1. **Symptom** — what you saw, concretely. "The vendor changed sex between clips."
-2. **Cause** — what you worked out was responsible.
-3. **Fix** — what actually solved it.
-4. **Generator and settings** — Flow, Veo, Runway; segment length; aspect ratio.
+## Report a production failure
 
-Verified entries go into `reference/FAILURE-MODES.md` and, where mechanical, into `scripts/validate.py`.
+Open an issue with:
 
-## Adding a format specialist
+1. **Symptom:** what appeared in the output.
+2. **Expected result:** what the prompt required.
+3. **Surface and model:** for example Flow with Omni Flash or Gemini API with Veo 3.1 Fast.
+4. **Mode and settings:** duration, aspect ratio, reference mode, seed, and any other relevant controls.
+5. **Prompt:** a minimal reproducible prompt when sharing it is safe.
+6. **Evidence:** screenshots or clips when licensing and privacy permit.
+7. **Fix:** what improved the result, if known.
 
-New formats are welcome — animation styles, verticals like real estate or education, regional formats.
+Verified findings can be added to `reference/FAILURE-MODES.md`. Use the evidence tags honestly:
 
-Copy an existing file in `formats/` and keep the shape:
+- `OBS`: directly observed
+- `DOC`: documented by the platform owner
+- `INF`: inferred or not independently verified
+- `REC`: repository recommendation
 
-- YAML frontmatter with `name`, `description`, `color`
-- A style line with `[RATIO]` left as a placeholder
-- **What this format rewards** — the craft that is specific to it
-- **Format-specific failures** table
-- A deliverable statement
+## Add a validator rule
 
-Then add it to `divisions.json`.
+Validator rules must be mechanical. Subjective visual judgement belongs in `core/flow-continuity-auditor.md`.
 
-Write only what is genuinely different about the format. Do not restate the playbook — agents cite `reference/PLAYBOOK.md` instead of duplicating it.
+For every new rule:
 
-## Adding a validator check
+1. Add the implementation to `scripts/validate.py`.
+2. Add at least one `fail_*` fixture proving broken input is rejected.
+3. Add or retain a `pass_*` fixture proving valid input is accepted.
+4. Register any expected failure label in `tests/run_tests.py`.
+5. Run the complete test suite.
 
-Checks must be **mechanical** — findable by pattern or structure, with no judgement. Judgement checks belong in `flow-continuity-auditor`.
+False negatives are the highest priority because they let broken input pass. False positives also matter because noisy checks train users to ignore the validator.
 
-Add the pattern to the relevant list in `scripts/validate.py`, add a `fail_*` fixture to `tests/fixtures/`, register it in `EXPECTED_FAILURES` in `tests/run_tests.py`, and confirm the suite still reports zero failures.
+## Add a format specialist
 
-Two failure modes to guard against, in priority order:
+Copy an existing file in `formats/` and retain:
 
-1. **False negatives** — broken input reported as clean. These are the dangerous kind and every `fail_*` fixture exists to prevent one.
-2. **False positives** — valid input flagged. These train people to ignore the tool, which eventually causes a false negative by another route.
+- YAML frontmatter with `name`, `description`, and `color`
+- a style line with `[RATIO]` as a placeholder
+- format-specific craft guidance
+- a format-specific failure table
+- a deliverable statement
 
-## Adapting to another generator
+Add the specialist to `divisions.json`. Do not duplicate the shared playbook.
 
-Add a row to the table in `reference/ADAPTING-OTHER-GENERATORS.md` describing that generator's equivalent of the `@` binding, and note anything that needs re-testing.
+## Documentation and source standards
 
-## Evidence standards for failure modes
+Use current primary sources for claims that may change. Record the review date and direct source in `reference/VERIFICATION.md`.
 
-Every row in `FAILURE-MODES.md` carries an evidence tag: **OBS** (observed directly), **DOC** (documented by the vendor), or **INF** (inferred and unverified).
+Separate:
 
-Tag your contribution honestly. An INF row that says so is useful. An INF row dressed as OBS damages the whole table, because readers cannot tell which claims to trust.
+- current documented platform behavior
+- repository recommendations
+- observed production behavior
+- unverified inferences
 
-Verifying or disproving an existing INF row is one of the most valuable contributions here.
+Do not present an API capability as proof that the Flow interface exposes the same control. Do not present one Flow interface observation as an API guarantee.
 
-## Style
+## Style rules
 
-- Plain, direct English. Short sentences.
-- Concrete over abstract. Show the prompt rather than describing it.
-- Global by default. Illustrate with examples that work anywhere, and never assume the reader's country, language or platform.
+- Plain, direct English.
+- Short paragraphs and concrete examples.
 - No hype.
+- No Unicode em dashes.
+- Character and location references use `@PascalCase` with no spaces or punctuation.
+- Examples that intentionally contain bad patterns use an `example`, `counterexample`, `bad`, `dont`, or `avoid` code fence.
 
-## Testing before you open a PR
+## Run tests
 
 ```bash
+python scripts/verify_package.py .
 python tests/run_tests.py
-./scripts/install.sh --tool claude-code --dry-run
+python -m compileall -q scripts tests
+bash -n scripts/install.sh
+bash -n scripts/update.sh
 ```
 
-`run_tests.py` must report **24 passed, 0 failed** for version 1.3.1. It covers validator fixtures plus JSON and installer integration behaviour.
+The pass count is intentionally not hard-coded in this document. The only acceptable result is zero failed checks.
 
-If you add a validator check, add **two** fixtures for it: one named `fail_*` that must be caught, and confirmation that the existing `pass_*` fixtures still pass. The `fail_*` fixtures guard against false negatives, which are the dangerous kind — a validator that silently passes broken input is worse than no validator.
+## Changelog and release records
 
-Documentation that quotes bad patterns on purpose has two escape hatches: `<!-- validate:ignore-file -->` for a whole file, or a fence tagged ```` ```example ```` for one block. Do not reach for these to make a real script pass.
+Every published version needs all of these:
+
+- `VERSION`
+- matching `**Version:**` in `SKILL.md`
+- a root `CHANGELOG.md` section
+- `release-history/vX.Y.Z.md`
+- an entry in `release-history/index.json`
+- a matching Git tag `vX.Y.Z`
+
+Start a release with:
+
+```bash
+python scripts/start_release.py 1.7.0 --date 2026-08-01
+```
+
+Complete every TODO before publishing. Old release records are permanent. If an old statement is later corrected, append a dated correction note instead of erasing the historical record.
+
+## Pull request checklist
+
+- [ ] Current primary documentation supports time-sensitive claims.
+- [ ] Generated references use canonical `@PascalCase` handles.
+- [ ] No Unicode em dash exists in the package.
+- [ ] New mechanical behavior has passing and failing regression coverage.
+- [ ] Package verification passes.
+- [ ] All tests pass with zero failures.
+- [ ] `CHANGELOG.md` is updated under `Unreleased` or the new version.
+- [ ] A permanent release record exists when preparing a release.

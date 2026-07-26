@@ -10,7 +10,7 @@ Write this instead:
 
 ```
 NO TEXT IN THE IMAGE: none.
-LOCATION: MarketStall. Counter in frame throughout.
+LOCATION: @MarketStall. Counter in frame throughout.
 AUDIO:
   Ambient: market noise.
   0-1s: a

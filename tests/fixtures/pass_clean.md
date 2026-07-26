@@ -11,20 +11,20 @@ temperature values or watermarks anywhere in the frame.
 
 Generate one continuous eight-second shot.
 
-LOCATION: ForestPath. A narrow track of dark earth between tall pine
+LOCATION: @ForestPath. A narrow track of dark earth between tall pine
 trunks, canopy overhead, roots crossing the track.
 LIGHTING: cold overcast morning light filtered through the canopy.
 
-WHO IS IN THIS SHOT: Hansel (walking steadily, one hand in his pocket),
-Gretel (half a pace behind him). No other named characters appear.
+WHO IS IN THIS SHOT: @Hansel (walking steadily, one hand in his pocket),
+@Gretel (half a pace behind him). No other named characters appear.
 
 CAMERA: MS from behind both children, 50mm, slow push-in.
 
 WHAT HAPPENS, ONE BEAT PER SECOND:
-  0-1s: Hansel's hand comes out of his pocket
+  0-1s: @Hansel's hand comes out of his pocket
   1-2s: his fingers open and crumbs fall to the earth
   2-3s: the crumbs scatter across the dark soil
-  3-4s: Gretel glances down at them
+  3-4s: @Gretel glances down at them
   4-5s: both children keep walking
   5-6s: the camera pushes past them down the track
   6-7s: the trail of crumbs recedes behind

@@ -1,0 +1,49 @@
+name: Bug report
+description: Report a validator, installer, update, documentation, or workflow defect.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Thank you for reporting a reproducible problem.
+  - type: input
+    id: version
+    attributes:
+      label: Skill version
+      description: Run `cat VERSION` or `python scripts/validate.py --version`.
+      placeholder: 1.6.0
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Storyboard prompt generation
+        - Video prompt validation
+        - Reference handles
+        - Installer
+        - Updater
+        - Release package
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Include the command, input file, and exact output.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Operating system, Python version, AI host, Flow surface, model, and mode when relevant.

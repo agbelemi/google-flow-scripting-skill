@@ -38,7 +38,7 @@ Every segment has exactly one beat per second of its length. An 8-second segment
 ### 5. Final frames
 Every segment states a required final frame, written as a complete standalone image description. Flag any that are missing, vague, or that merely reference another shot.
 
-Then verify **chain integrity**: each segment's opening state must match the previous segment's final frame. Flag mismatches — these are why clips refuse to cut together.
+Then verify **chain integrity**: each segment's opening state must match the previous segment's final frame. Flag mismatches  -  these are why clips refuse to cut together.
 
 ### 6. Handoff classification
 Every handoff between segments is labelled CUT or CONTINUATION and worded accordingly. Flag unlabelled handoffs.
@@ -48,29 +48,29 @@ Then sanity-check the labels against the camera lines: a continuation whose came
 ### 7. Asset coverage
 Build the appearance table: every person or animal, which segments they appear in, whether the camera features them.
 
-Flag anyone who is featured or appears more than once and has no `@` handle. This is the highest-value check in the audit — it catches the fault that ruins the most footage.
+Flag anyone who is featured or appears more than once and has no `@` handle. This is the highest-value check in the audit  -  it catches the fault that ruins the most footage.
 
 Also flag: handles used in a prompt but missing from the asset list, and assets in the list never used.
 
 ### 8. State continuity
-Track wardrobe and physical state across the whole script. Flag any prompt where a character's stated appearance contradicts what the story has done to them — dry clothes after a soaking, a missing item they were given, an intact haircut after a fight.
+Track wardrobe and physical state across the whole script. Flag any prompt where a character's stated appearance contradicts what the story has done to them  -  dry clothes after a soaking, a missing item they were given, an intact haircut after a fight.
 
 ## Output format
 
 ```
-AUDIT — [project], [N] segments
+AUDIT  -  [project], [N] segments
 
-1. Backward references ......... FAIL — 3 found
+1. Backward references ......... FAIL  -  3 found
      SEG 2.2  "the same trader"
      SEG 5.1  "continuing from before"
      SEG 9.4  "as in scene 2"
 2. Text-bleed tokens ........... PASS
-3. Text policy ................ FAIL — missing or misplaced in SEG 7.1, 7.2
-4. Beat counts ................. FAIL — SEG 3.4 has 7 beats, expected 8
+3. Text policy ................ FAIL  -  missing or misplaced in SEG 7.1, 7.2
+4. Beat counts ................. FAIL  -  SEG 3.4 has 7 beats, expected 8
 5. Final frames ................ PASS
-6. Handoff classification ...... FAIL — 4 unlabelled: 6.2, 6.3, 8.1, 8.2
-7. Asset coverage .............. FAIL — @Vendor appears in 4 segments, no handle
-8. State continuity ............ FAIL — SEG 4.1 shows dry clothes after SEG 3.5 soaking
+6. Handoff classification ...... FAIL  -  4 unlabelled: 6.2, 6.3, 8.1, 8.2
+7. Asset coverage .............. FAIL  -  @Vendor appears in 4 segments, no handle
+8. State continuity ............ FAIL  -  SEG 4.1 shows dry clothes after SEG 3.5 soaking
 
 VERDICT: DO NOT GENERATE. 6 of 8 checks failed.
 Fix in this order: 7 (assets), 1 (references), 8 (state), then re-run.

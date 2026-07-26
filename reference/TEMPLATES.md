@@ -1,35 +1,49 @@
 <!-- validate:ignore-file -->
-# TEMPLATES
-### The five prompt shapes. Copy these literally.
+# Templates
 
-All open with one explicit text policy. Use the no-text form when no lettering is wanted:
+These are the six output shapes used by the skill. Copy their required lines literally.
 
+## Canonical reference handles
+
+Every character or location reference starts with `@`, followed by an alphanumeric PascalCase name with no spaces or punctuation.
+
+```text
+@Kwame
+@CafeLadies
+@SidewalkCafe
 ```
+
+Convert `Cafe Ladies` to `@CafeLadies`. Keep the same handle in the asset library, operator notes, storyboard prompts, video prompts, and audits.
+
+## Text policy
+
+Video, reference-sheet, and ordinary image prompts open with one explicit text policy. Use this when no lettering is wanted:
+
+```text
 NO TEXT IN THE IMAGE: do not render any words, letters, numbers,
 captions, subtitles, labels, location names, timecodes, colour
 temperature values or watermarks anywhere in the frame.
 ```
 
-For intentional lettering, replace that policy with:
+For intentional lettering, replace it with:
 
 ```text
 INTENTIONAL TEXT IN THE IMAGE: state the exact words, surface and placement; no other text.
 ```
 
-Referred to below as `[TEXT-POLICY LINE]`. In the templates, use the
-`[TEXT-POLICY LINE]` placeholder with the policy appropriate to the project.
-
----
+Storyboard contact-sheet prompts are the exception to first-line placement. Their first sentence must command immediate image generation. Put the text policy immediately after the output contract.
 
 ## 1. Character reference sheet
 
-Generated once per character. **Plain background** — a busy background behind a reference drags into every generation that uses it.
+Generated once per referenced character. Use a plain background so the background does not contaminate later generations.
 
-```
+```text
 [TEXT-POLICY LINE]
 
+REFERENCE HANDLE: @CharacterName
+
 Character turnaround reference sheet on a plain neutral background,
-showing front, three-quarter, side and back views of the same character.
+showing front, three-quarter, side and back views of @CharacterName.
 
 [FULL PHYSICAL DESCRIPTION: age, build, exact height, face, hair,
 distinguishing features, and every wardrobe item with colour and
@@ -43,194 +57,286 @@ and any expression the story depends on.]
 
 For a character based on a real person, prepend:
 
-```
-[ATTACH THE REFERENCE PHOTO] - stylise this face into the style below
-while keeping the likeness clearly recognisable.
+```text
+ATTACH: @CharacterNameSourcePhoto
+Stylise the attached face into the visual style below while keeping the
+likeness clearly recognisable.
 ```
 
-**To restyle an existing render's face and hair to a real reference, keeping body and wardrobe:**
+To restyle an existing render's face and hair while keeping body and wardrobe:
 
-```
-Using the attached character as the base:
+```text
+NO TEXT IN THE IMAGE: no writing, labels, captions or watermarks.
+
+BASE CHARACTER: @CharacterNameBase
+FACE REFERENCE: @CharacterNameSourcePhoto
+
+Using @CharacterNameBase as the body and wardrobe source:
 1. Remove the original background completely.
-2. Place the character on a plain white background with no text or
-   markings.
-3. Modify the face and hairstyle to match the attached reference photo,
-   keeping the body, clothing and overall style unchanged.
-
-Adapt face shape, features and skin tone to resemble the real person.
-Match hairstyle, texture and colour to the reference. Keep body type,
-height, clothing and accessories exactly as in the attached render.
-Maintain the same shading, lighting and rendering. Preserve the camera
-angle and pose.
-
-Attach: [1] the base character image  [2] the real face reference
+2. Place the character on a plain white background with no markings.
+3. Modify only the face and hairstyle to match @CharacterNameSourcePhoto.
+4. Keep body type, height, clothing, accessories, pose, shading, lighting
+   and camera angle unchanged.
 ```
-
----
 
 ## 2. Environment reference sheet
 
-```
+```text
 [TEXT-POLICY LINE]
 
-Environment reference, wide establishing view, no people in frame.
+REFERENCE HANDLE: @LocationName
 
-[SET ANCHOR: the fixed layout, object by object, with positions relative
-to each other and approximate dimensions.]
+Environment reference for @LocationName, wide establishing view, no
+people in frame.
 
-[LIGHTING in plain words - no colour temperature values.]
+[SET ANCHOR: fixed layout, object by object, with positions relative to
+each other and approximate dimensions.]
+
+[LIGHTING in plain words, with no colour-temperature values.]
 
 [STYLE LINE]
 ```
 
----
+## 3. Storyboard contact-sheet prompt
 
-## 3. Storyboard image prompt
+Generate one contact sheet per segment. Do not generate individual planning prose before the image.
 
-One per key moment. Minimum: first frame, a middle beat, the final frame.
+Required layout by default:
 
-```
+| Segment | Panels | Layout |
+|---|---:|---|
+| 4 seconds | 2 | 2x1 |
+| 6 seconds | 3 | 3x1 |
+| 8 seconds | 3 | 3x1 |
+| 10 seconds | 4 | 2x2 |
+
+Use 3x3 only when nine distinct frames are explicitly authored. Never invent frames to fill a grid.
+
+```text
+GENERATE THE STORYBOARD IMAGE NOW.
+
+Do not write a storyboard, scene breakdown, asset list, explanation,
+proposal, caption, or follow-up question.
+
+Create exactly ONE finished storyboard contact sheet containing exactly
+[PANEL COUNT] cinematic still-image panels arranged in a clean [LAYOUT]
+grid.
+
+Panel order: [state the reading order and panel positions].
+Do not create more than [PANEL COUNT] panels.
+Do not add intermediate frames.
+Do not invent additional actions.
+Do not ask for permission before generating.
+
 [TEXT-POLICY LINE]
 
-A single still frame from a film. [STYLE LINE]
+CHARACTER REFERENCES: @CharacterOne, @CharacterTwo
+LOCATION REFERENCE: @LocationName
+OTHER ATTACHED REFERENCES: [@ReferenceName or NONE]
 
-Location: [Name]. [SET ANCHOR]
-Lighting: [plain-words lighting].
+Use the attached references as the authoritative visual source. Match
+them directly. Do not redesign faces, hair, clothing, body proportions,
+environment architecture, recurring props, or visual style.
 
-Who is in this frame: [Name] ([state and action - not a re-description
-of what the reference already shows]), [Name].
-Also present:
-  [ExtraName] - [what they are doing in this shot]
+All panels show moments from the same continuous [N]-second segment.
+Maintain exact continuity across every panel:
+- same referenced faces and hairstyles
+- same wardrobe and accessories
+- same environment layout and screen direction
+- same recurring props and their condition
+- same lighting direction and weather
+- same character proportions and rendering style
 
-Camera plan for the whole segment: [camera description]
-This panel is the moment at [Xs]. Frame it using whichever camera setup
-above is active at that point.
+VISUAL STYLE
+[STATIC STILL-IMAGE STYLE LINE. Do not describe motion.]
+Each panel uses a [16:9 or 9:16] cinematic composition.
 
-The moment to capture: [the beat text, or the final frame for the last
-panel]
+LOCATION CONTINUITY
+@LocationName. [FULL SET ANCHOR]
+Do not reverse, redesign, or rearrange the layout between panels.
+
+LIGHTING CONTINUITY
+[PLAIN-WORDS LIGHTING AND DIRECTION]
+
+CAMERA PLAN FOR THE SEGMENT
+[WHOLE-SEGMENT CAMERA PLAN FOR CONTINUITY]
+
+PANEL A - [GRID POSITION] - [TIMECODE OR MOMENT]
+REFERENCED SUBJECTS: @CharacterOne[, @CharacterTwo]
+STATIC FRAMING: [shot size, angle, lens, subject placement].
+MOMENT TO CAPTURE: [authored opening state or beat].
+DO NOT SHOW: [specific plausible inventions or premature actions].
+
+[PANEL B AND ANY MIDDLE PANELS IN THE SAME FORMAT]
+
+PANEL [FINAL LETTER] - [GRID POSITION] - FINAL HANDOFF FRAME
+REFERENCED SUBJECTS: [@Handles]
+STATIC FRAMING: [final composition].
+MOMENT TO CAPTURE: [exact required final visible state].
+DO NOT SHOW: [new action, reaction, damage, or continuity drift].
+
+GLOBAL FORBIDDEN CHANGES
+[List the likely failures: changed face, changed wardrobe, damaged prop,
+duplicate subject, extra people, altered architecture, text, logos,
+watermarks, and any invented actions.] 
+
+FINAL OUTPUT REQUIREMENT
+Return only the completed [PANEL COUNT]-panel [LAYOUT] storyboard image.
+No written response.
+No storyboard rewrite.
+No asset-development list.
+No sound descriptions.
+No dialogue.
+No extra frames.
+No confirmation question.
 ```
-
-Attach the relevant reference images to every panel.
-
----
 
 ## 4. Video prompt
 
-```
+```text
 [TEXT-POLICY LINE]
 
-Generate one continuous [4/6/8]-second shot. [STYLE LINE]
+Generate one continuous [N]-second shot. [VIDEO STYLE LINE]
 
-LOCATION: [Name]. [SET ANCHOR]
+CHARACTER REFERENCES: @CharacterOne, @CharacterTwo
+LOCATION REFERENCE: @LocationName
+
+LOCATION: @LocationName. [SET ANCHOR]
 LIGHTING: [plain-words lighting].
 
-WHO IS IN THIS SHOT: [Name] ([current state, action, what they hold]),
-[Name]. No other named characters appear.
+WHO IS IN THIS SHOT: @CharacterOne ([current state, action, and held
+objects]), @CharacterTwo ([current state and action]). No other named
+characters appear.
 ALSO IN THIS SHOT:
-  [ExtraName] - [action in this shot]
+  @FeaturedExtra - [action in this shot]
 
 HOW THIS SHOT OPENS:
-[CONTINUATION or CUT wording - see PLAYBOOK section 8. Omit entirely if
-the segment opens a scene.]
+[CONTINUATION or CUT wording. Omit if the segment opens a scene.]
 
 CAMERA: [camera description]
 
-WHAT HAPPENS, ONE BEAT PER SECOND:
-  0-1s: ...
-  1-2s: ...
-  [one line for every second of the segment]
+WHAT HAPPENS:
+[TIMING FORMAT SELECTED FOR THE PROJECT]
 
 AUDIO:
-  Dialogue: [Name] says, "[exact line]" - [tone].
-  SFX: [the one primary sound, tied to visible action].
-  Ambient: [the background bed].
-  Not heard: [what should stay out].
+  Dialogue: @CharacterName says, "[exact line]" - [tone].
+  SFX: [primary sound tied to visible action].
+  Ambient: [background bed].
+  Not heard: [what must remain absent].
 
-THE SHOT MUST END ON EXACTLY THIS IMAGE: [final frame]
+THE SHOT MUST END ON EXACTLY THIS IMAGE: [complete final-frame state]
 
-RULES: exactly [N] seconds; one location only; faces, hair and clothing
-must not change between beats; no captions, subtitles or on-screen
-writing.
+RULES: exactly [N] seconds; one location only; faces, hair, clothing and
+referenced props must not change unexpectedly; no unapproved captions,
+subtitles or on-screen writing.
 ```
 
-**Attachments:** the character and environment references for this shot, plus the previous segment's exported final frame as the start frame where the interface accepts one.
+Attachments should use canonical handles:
 
-Omit any audio line that does not apply. A segment with no speech simply has no dialogue line — but it should still have ambient, or you get whatever the model invents.
-
-**Negative prompt field** (separate from the prompt above, where the interface offers it):
-
+```text
+ATTACH: @CharacterOne, @CharacterTwo, @LocationName, @PreviousFinalFrame
 ```
+
+Where the interface supports a separate negative-prompt field, use:
+
+```text
 watermark, on-screen text, caption, subtitle, distorted hands, extra
 limbs, warped face, duplicated character, low resolution
 ```
 
----
+Omni does not support a separate negative-prompt parameter in the Gemini API. Put critical exclusions in the regular prompt when using Omni.
 
 ## 5. Operator note
 
 Written for the human, not the generator.
 
-```
-OPERATOR NOTE - read before generating
-References to attach: [Name]  [Name]  [Location]
-Start frame: [none / the exported final frame of segment X]
-End frame: [none / the target final frame still, where you have one]
-Mode: [Text to Video / Ingredients to Video / Frames to Video]
-Order of work: generate the storyboard panels first and check them.
-  Only when they are right, generate the video.
-Watch for: [the two or three things most likely to fail in this shot]
-Afterwards: save the final frame as an asset, name it FINAL_X, and check
-  it matches the required final frame before moving on.
+```text
+OPERATOR NOTE - DO NOT PASTE INTO THE GENERATOR
+References to attach: @CharacterOne, @CharacterTwo, @LocationName
+Start frame: NONE or @FinalFrameName
+End frame: NONE or @TargetFinalFrame
+Model and surface: [Flow or Gemini API], [model]
+Mode: [Text to Video, Ingredients to Video, Frames to Video, Reference to Video, or Edit]
+Order of work: generate the storyboard contact sheet first and approve it.
+Only after approval, generate the video.
+Watch for: [two or three likely failures]
+Afterwards: crop and save the final storyboard panel as @PanelFinalName,
+then save the approved video final frame as @FinalFrameName.
 ```
 
----
+## 6. Approval checklist
+
+This is human-facing and must never be included in the generation prompt.
+
+```text
+DO NOT INCLUDE THIS CHECKLIST IN THE GENERATION PROMPT
+
+[ ] Faces match all attached references.
+[ ] Every character and location reference uses its canonical @Handle.
+[ ] Wardrobe, props and physical state are correct.
+[ ] Environment layout and screen direction are unchanged.
+[ ] No extra actions, people or objects were invented.
+[ ] No unwanted text, numbers, captions, signs, logos or watermarks appear.
+[ ] The final panel can be cropped into a clean standalone handoff image.
+[ ] The final panel matches the required final state of the video prompt.
+```
 
 ## Style lines by format
 
-Reused verbatim across a project. Describe positively; put technical exclusions in the negative prompt field.
+### 3D animation still
 
-**3D animation**
-```
-3D animated feature film: soft skin shading, large expressive eyes,
-slightly exaggerated proportions, rich global illumination, creamy
-background blur, gentle film grain, [RATIO], smooth cinematic motion.
+```text
+High-quality stylised 3D animated feature-film still: soft skin shading,
+expressive eyes, slightly exaggerated but believable proportions,
+physically based materials, rich global illumination, cinematic depth
+of field, and subtle film grain, [RATIO].
 ```
 
-**2D animation**
+### 3D animation video
+
+```text
+High-quality stylised 3D animated feature film: soft skin shading,
+expressive eyes, slightly exaggerated but believable proportions,
+physically based materials, rich global illumination, cinematic depth
+of field, subtle film grain, [RATIO], and smooth cinematic motion.
 ```
-2D animation: clean vector linework, flat colour fills with simple cel
-shading, bold shape language, a limited palette, expressive silhouettes,
+
+### 2D animation still
+
+```text
+2D animation still: clean vector linework, flat colour fills, simple cel
+shading, bold shape language, limited palette, expressive silhouettes,
 [RATIO].
 ```
 
-**Live action**
-```
-Live-action cinematography: photographic realism, fine natural skin
-texture with visible pores, real optics with shallow depth of field,
-subtle lens character, filmic colour grade, fine grain, [RATIO], 24fps
-motion with natural motion blur.
+### Live-action still
+
+```text
+Live-action film still: photographic realism, fine natural skin texture,
+real optics, controlled depth of field, subtle lens character, filmic
+colour grade, fine grain, [RATIO].
 ```
 
-**Documentary**
-```
-Observational documentary cinematography: available light, handheld
-camera with natural micro-movement, unposed subjects, real lived-in
-locations, neutral colour grade, fine grain, [RATIO].
+### Documentary still
+
+```text
+Observational documentary still: available light, unposed subjects,
+real lived-in location, neutral colour grade, fine grain, [RATIO].
 ```
 
-**Advertising**
-```
-High-end commercial cinematography: pristine product rendering, precise
-controlled lighting with clean held highlights, glossy contemporary
-colour grade, shallow depth of field, immaculate surfaces, [RATIO].
+### Advertising still
+
+```text
+High-end commercial still: pristine product rendering, precise controlled
+lighting, clean held highlights, contemporary colour grade, shallow depth
+of field, immaculate surfaces, [RATIO].
 ```
 
-**Music video**
-```
-Music video cinematography: heightened stylised look, bold saturated
-colour, dramatic directional lighting, strong contrast, expressive
-camera movement, [RATIO].
+### Music-video still
+
+```text
+Music-video still: heightened stylised look, bold saturated colour,
+dramatic directional lighting, strong contrast, [RATIO].
 ```
 
-Replace `[RATIO]` with "widescreen 16:9" or "vertical 9:16" — the only two the generator produces natively.
+Replace `[RATIO]` with `widescreen 16:9` or `vertical 9:16`.

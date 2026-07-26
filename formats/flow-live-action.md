@@ -30,7 +30,7 @@ Practical consequences:
 
 ## What live action rewards
 
-**Real optics.** Specify focal length and depth of field per shot. Say what is sharp and what is not: "85mm, shallow — his eyes sharp, the room behind dissolved."
+**Real optics.** Specify focal length and depth of field per shot. Say what is sharp and what is not: "85mm, shallow  -  his eyes sharp, the room behind dissolved."
 
 **Available light.** Name a plausible physical source in plain words: "hard afternoon sun through a west window, one bounce off the tabletop." Physically motivated light looks real; abstract light does not.
 
@@ -46,7 +46,7 @@ Say **fine skin texture, natural pores, no retouching**. Left unstated, faces re
 
 ## Camera
 
-Write like a shooting script: lens, height, movement with distance and speed. Prefer moves a real rig could do — dolly, handheld, steadicam, crane. Physically impossible moves push the render toward CGI and break the realism.
+Write like a shooting script: lens, height, movement with distance and speed. Prefer moves a real rig could do  -  dolly, handheld, steadicam, crane. Physically impossible moves push the render toward CGI and break the realism.
 
 ## Format-specific failures
 
@@ -65,7 +65,7 @@ When this workflow generates audio, direct it explicitly. Use `AUDIO: Intentiona
 
 Live action needs the most naturalistic sound in this skill, and the least of it. Real rooms are quieter than people expect.
 
-- **Dialogue** is where this format lives. Name the speaker, quote the exact line, give the tone and pace. Lip-sync varies between runs — for lines that must land precisely, generate several takes and select, or plan to replace the audio in post.
+- **Dialogue** is where this format lives. Name the speaker, quote the exact line, give the tone and pace. Lip-sync varies between runs  -  for lines that must land precisely, generate several takes and select, or plan to replace the audio in post.
 - **SFX** should be small and physical: a chair leg on tile, a cup set down, a breath.
 - **Ambient** should be a specific room tone, not "atmosphere": a fridge hum, traffic two streets away.
 - **Not heard** matters here more than anywhere. Add it, or the model will score your drama.

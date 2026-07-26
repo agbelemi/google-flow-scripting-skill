@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "releases": [
+    {
+      "version": "1.6.0",
+      "date": "2026-07-24",
+      "record": "release-history/v1.6.0.md",
+      "status": "current"
+    },
+    {
+      "version": "1.5.0",
+      "date": "2026-07-23",
+      "record": "release-history/v1.5.0.md",
+      "status": "superseded"
+    },
+    {
+      "version": "1.4.0",
+      "date": "2026-07-23",
+      "record": "release-history/v1.4.0.md",
+      "status": "superseded-with-correction-note"
+    },
+    {
+      "version": "1.3.1",
+      "date": "2026-07-23",
+      "record": "release-history/v1.3.1.md",
+      "status": "superseded"
+    },
+    {
+      "version": "1.3.0",
+      "date": "2026-07-23",
+      "record": "release-history/v1.3.0.md",
+      "status": "superseded"
+    }
+  ]
+}

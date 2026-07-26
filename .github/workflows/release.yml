@@ -1,0 +1,63 @@
+name: Publish release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: write
+  id-token: write
+  attestations: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out tagged source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Verify tag and version
+        shell: bash
+        run: |
+          VERSION_VALUE="$(cat VERSION)"
+          if [[ "${GITHUB_REF_NAME}" != "v${VERSION_VALUE}" ]]; then
+            echo "Tag ${GITHUB_REF_NAME} does not match VERSION v${VERSION_VALUE}." >&2
+            exit 1
+          fi
+          test -f "release-history/v${VERSION_VALUE}.md"
+
+      - name: Run full tests
+        run: python tests/run_tests.py
+
+      - name: Build release assets
+        run: python scripts/build_release.py --output dist --skip-tests
+
+      - name: Attest release archives
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: |
+            dist/google-flow-scripting-skill-v*.zip
+            dist/google-flow-scripting-skill-v*.tar.gz
+
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          VERSION_VALUE="$(cat VERSION)"
+          gh release create "v${VERSION_VALUE}" \
+            dist/google-flow-scripting-skill-v${VERSION_VALUE}.zip \
+            dist/google-flow-scripting-skill-v${VERSION_VALUE}.tar.gz \
+            dist/SHA256SUMS \
+            --title "Google Flow Scripting Skill v${VERSION_VALUE}" \
+            --notes-file "release-history/v${VERSION_VALUE}.md" \
+            --verify-tag \
+            --latest

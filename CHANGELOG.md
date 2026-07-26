@@ -1,53 +1,112 @@
 # Changelog
 
-## 1.3.1 — 2026-07-23
+All notable changes are recorded here. Individual release notes are preserved in `release-history/` and indexed by `release-history/index.json`.
 
-### Validator
+The project uses semantic versioning:
 
-- Scopes beat extraction to each segment's `VIDEO PROMPT` sub-block so storyboard panels may quote time ranges without contaminating the video timeline.
-- Falls back to whole-segment scanning only when no `VIDEO PROMPT` marker exists; recognized empty or malformed video prompts are not rescued by storyboard beats.
-- Preserves raw beat order and duplicate detection within the scoped region.
-- Always flags 6- and 8-digit hex colours; flags 3-/4-digit shorthand only when it contains `a`-`f`, allowing numeric issue references such as `#123` and `#1234`.
+- patch: backward-compatible fixes
+- minor: backward-compatible features
+- major: breaking behaviour or package-format changes
+
+## [Unreleased]
+
+No unreleased changes.
+
+## [1.6.0] - 2026-07-24
+
+### Added
+
+- Cross-platform Python installer with Bash and PowerShell launchers.
+- Explicit update checker and checksum-verified release updater.
+- Installation manifests for local-modification detection.
+- Safe backups, backup retention, dry runs, downgrade protection, and Git working-tree protection.
+- Versioned ZIP and tar.gz release builder with internal file manifest and external SHA-256 checksums.
+- Package verifier for required files, version consistency, release history, checksums, and em-dash prohibition.
+- Tag-driven GitHub release workflow, repository templates, support policy, security policy, and Dependabot configuration.
+- Permanent per-version records under `release-history/`.
+- Canonical storyboard contact-sheet prompt template.
+- JSON-driven storyboard prompt generator and worked ten-second 2x2 example.
+- Surface, model, mode, and duration compatibility validation.
+
+### Changed
+
+- `VERSION` is now the single source for package and validator versioning.
+- Storyboard validation now checks that actual panel sections match the declared count and order.
+- Installation and update documentation now distinguishes Git clones from downloaded or installed release copies.
+- Stale Flow, Veo, and Omni feature statements were corrected and dated.
+- Release and test processes now verify changelog records before shipping.
+
+### Security
+
+- Network updates require a versioned release asset and matching `SHA256SUMS` entry.
+- Archive extraction rejects path traversal and archive links.
+- The updater refuses silent replacement, backs up the prior installation, and detects local modifications.
+
+## [1.5.0] - 2026-07-23
+
+### Added
+
+- Hard storyboard-generation contract and exact first sentence.
+- Four-panel 2x2 default for ten-second scenes with four authored moments.
+- Canonical `@ReferenceHandle` rules and validator checks.
+- Package-wide em-dash prohibition and integrity check.
+- Flow and Gemini API model profiles.
+- Flexible timing modes and Veo prompt-length estimate.
+- GitHub Actions test workflow.
+
+### Corrected
+
+- Omni Flash Flow durations are 4, 6, 8, and 10 seconds, not only 10 seconds.
+- Veo 3.1 API text input has a published 1,024-token limit.
+- Three image references is not a universal Omni ceiling.
+- Seed reuse is a consistency aid, not deterministic reproduction.
 
 ### Tests
 
-- Adds passing storyboard-panel and failing storyboard/video-timeline regression fixtures.
-- Raises the suite to **24 checks** and records that the false positive was found while testing the mandated storyboard workflow.
+- Expanded the suite to 40 passing regression, integration, and package-integrity checks.
 
-### Documentation
+## [1.4.0] - 2026-07-23
 
-- Documents `--force` for predictable non-interactive reinstalls while retaining automatic backups.
+### Added
 
-## 1.3.0 — 2026-07-23
+- Ten-second segment support.
+- Markdown heading recognition for segment markers.
+- Model-first intake and unconditional storyboard gate.
+- Image-built reference-plate guidance.
+- Three-pass asset planning.
 
-### Validator
+### Historical note
 
-- Preserves raw beat order and duplicate intervals instead of normalising them away.
-- Rejects out-of-order and duplicated beat lines with targeted diagnostics.
-- Requires the text policy to be the first semantic line of every prompt.
-- Accepts explicit intentional-text policies as an alternative to blanket no-text instructions.
-- Adds `--no-require-audio` while keeping audio checks enabled by default.
-- Treats `AUDIO: Intentional silence.` as a valid deliberate choice.
-- Emits pure machine-readable JSON with settings and disabled-check metadata.
-- Expands hex-colour detection to common 3-, 4-, 6- and 8-digit forms.
-
-### Packaging and installation
-
-- Adds a canonical root `SKILL.md` package.
-- Installs native Skills to Claude Code, Cursor and Windsurf Skill directories.
-- Keeps Claude specialist subagents as an optional `--install-subagents` add-on.
-- Stages installations atomically and creates timestamped backups before replacement.
-- Adds `--target` for explicit destination control.
-- Resolves the `formats` division dependency on core resources.
+Two statements in the original v1.4.0 notes were corrected in v1.5.0: Omni also supports shorter Flow durations, and Veo 3.1 publishes an API token limit. The original release record remains preserved with a correction note in `release-history/v1.4.0.md`.
 
 ### Tests
 
-- Adds regression fixtures for out-of-order beats, duplicate beats, misplaced text policy, multiple segments, a malformed middle segment, intentional text, intentional silence and disabled audio checking.
-- Adds integration tests for pure JSON output, installer dry-run behaviour, native Cursor Skill layout and backup preservation.
+- Expanded the suite to 26 checks.
 
-### Documentation
+## [1.3.1] - 2026-07-23
 
-- Replaces absolute “no memory” language with “no guaranteed implicit memory.”
-- Replaces “Pixar-style” as a category label with descriptive family-feature 3D language.
-- Replaces the ambiguous verification badge with a documentation-review record.
-- Clarifies that pacing, text and audio requirements are project policies rather than universal creative laws.
+### Fixed
+
+- Scoped beat extraction to video prompt regions.
+- Prevented storyboard timing from satisfying malformed video timing.
+- Improved short hex-colour detection.
+
+### Tests
+
+- Expanded the suite to 24 checks.
+
+## [1.3.0] - 2026-07-23
+
+### Added
+
+- Canonical root `SKILL.md` package.
+- Native Skill installation for Claude Code, Cursor, and Windsurf.
+- Optional Claude specialist subagent installation.
+- Atomic staging and timestamped backups.
+- Raw timing-order, duplicate-interval, text-policy, audio-policy, and JSON-output validation.
+- Regression and installer integration tests.
+
+### Changed
+
+- Replaced absolute memory language with "no guaranteed implicit memory."
+- Clarified that timing, text, and audio policies are configurable project choices.

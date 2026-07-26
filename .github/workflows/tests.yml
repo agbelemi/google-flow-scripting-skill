@@ -8,9 +8,17 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: tests-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
 
     steps:
       - name: Check out repository
@@ -19,10 +27,46 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: ${{ matrix.python-version }}
 
-      - name: Make installer executable
-        run: chmod +x scripts/install.sh
+      - name: Compile Python sources
+        run: python -m compileall -q scripts tests
 
-      - name: Run test suite
+      - name: Check shell launcher syntax
+        run: |
+          bash -n scripts/install.sh
+          bash -n scripts/update.sh
+
+      - name: Verify source package
+        run: python scripts/verify_package.py .
+
+      - name: Run regression, integration, and integrity tests
         run: python tests/run_tests.py
+
+  release-build-smoke-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Build release assets
+        run: python scripts/build_release.py --output dist
+
+      - name: Verify ZIP package
+        run: |
+          mkdir unpacked
+          unzip -q dist/google-flow-scripting-skill-v$(cat VERSION).zip -d unpacked
+          python unpacked/google-flow-scripting-skill-v$(cat VERSION)/scripts/verify_package.py \
+            unpacked/google-flow-scripting-skill-v$(cat VERSION) --require-manifest
+
+      - name: Upload smoke-test assets
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-smoke-test
+          path: dist/
+          if-no-files-found: error

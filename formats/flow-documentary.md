@@ -51,7 +51,7 @@ Legitimate uses are broad: reconstructions clearly labelled as such, illustrativ
 
 ## Camera
 
-Prefer handheld and shoulder-mounted. Long-lens observation from a distance reads as documentary; close wide-angle reads as staged. Reframes should feel reactive — the camera finding the action, not anticipating it.
+Prefer handheld and shoulder-mounted. Long-lens observation from a distance reads as documentary; close wide-angle reads as staged. Reframes should feel reactive  -  the camera finding the action, not anticipating it.
 
 ## Format-specific failures
 

@@ -1,0 +1,32 @@
+name: Feature request
+description: Propose a backward-compatible workflow, validator, or packaging improvement.
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Production problem
+      description: Describe the current failure or repeated manual work.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence or official documentation
+      description: Add exact prompts, outputs, interface details, or official source links where applicable.
+  - type: dropdown
+    id: compatibility
+    attributes:
+      label: Expected release type
+      options:
+        - Patch fix
+        - Minor backward-compatible feature
+        - Major breaking change
+        - Unsure

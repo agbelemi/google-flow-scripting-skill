@@ -1,0 +1,533 @@
+{
+  "files": [
+    {
+      "path": ".github/ISSUE_TEMPLATE/bug_report.yml",
+      "sha256": "88733e5734529fc728552a1ca97c1245da766c8427884af7e6ca3140f5786b56",
+      "size": 1281
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/config.yml",
+      "sha256": "742e9a8eb60f4876f2c84a0497a3a381c14a61d0c08c350af74bae2d32d57a5c",
+      "size": 230
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/feature_request.yml",
+      "sha256": "92d224ea566eb338fd4ef2e5ffd455887bb3de6d13cc96d8f478eb926218debd",
+      "size": 903
+    },
+    {
+      "path": ".github/PULL_REQUEST_TEMPLATE.md",
+      "sha256": "130b7f45272134d6c0cd2693b101d099b7305b8014ac83f9b906618c01bd256e",
+      "size": 624
+    },
+    {
+      "path": ".github/dependabot.yml",
+      "sha256": "201dbceeffbfdcfae494a71ad7821a781d4f7a56a075628d318be4c14e515a40",
+      "size": 169
+    },
+    {
+      "path": ".github/workflows/release.yml",
+      "sha256": "6942a91629bc84da19c0eda963ea457b45e6a1e43a715bfd73e3a2e0f2e7dca1",
+      "size": 1759
+    },
+    {
+      "path": ".github/workflows/tests.yml",
+      "sha256": "1ec5364339042d60f40db36a4e7d35816f60924a4fbc538b48b5b2bb289bea5a",
+      "size": 1837
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "11b5c7dc311301e158184e29e7cab1f23c60aba4aabb8a9821b5c1923dc8cfaf",
+      "size": 130
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "50979d755ba8e64f02ebc5c27dd720113799d6cf1d170fa223327a892032795d",
+      "size": 4165
+    },
+    {
+      "path": "CODE_OF_CONDUCT.md",
+      "sha256": "ce5cc8cef383dda5c2e61497bbad0520b583cda38b7c16a3a404cfd51043b182",
+      "size": 653
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "sha256": "5125059c596d01269c1880835185145233ab264efb0b233abdeef146aea85bd2",
+      "size": 4449
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "75fd6c42aea6c3005bc591d4112a969444cc23f3cb815d274d88c93f8064caf2",
+      "size": 1065
+    },
+    {
+      "path": "README.md",
+      "sha256": "1f3ae607cf0d958122af6df717fa2abf50bec0f667e1596d14b8e60dc097b701",
+      "size": 9157
+    },
+    {
+      "path": "SECURITY.md",
+      "sha256": "e464518e5107881bf222072ecec2528886971d8570f67a5cc81ae1c88bc8284c",
+      "size": 1448
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "b8662e5e7af8698be063da9fcfde626cf4b19c65bf162a8ec3f3c6b6b59022cf",
+      "size": 7455
+    },
+    {
+      "path": "SUPPORT.md",
+      "sha256": "51ead866412e7c7fa99a7b6fabdbd32a0847c5d55d34efc0bb9363d166be86d9",
+      "size": 1170
+    },
+    {
+      "path": "VERSION",
+      "sha256": "cb1d9a30bc4ab8a397f39b7d786bb82aca0b816077eefc35d7c822017d75f6a5",
+      "size": 6
+    },
+    {
+      "path": "core/flow-asset-manager.md",
+      "sha256": "e7138e2add4520dd002a27281c4670298dc69e74cc9788074800b32207d48dde",
+      "size": 4948
+    },
+    {
+      "path": "core/flow-continuity-auditor.md",
+      "sha256": "d7bd3adce30506802bd56545192b5034c7c086dc579fcedfdb6d0f06dcfc7112",
+      "size": 4574
+    },
+    {
+      "path": "core/flow-orchestrator.md",
+      "sha256": "541174ca8dd02b417ba935a5e0504c6221be9481ac79d033a1ddf278929c858f",
+      "size": 5438
+    },
+    {
+      "path": "core/flow-story-architect.md",
+      "sha256": "88d62c7a1f0147d399aa520ada15f3aa43148a520c8d58999e2417d3e2c42435",
+      "size": 3719
+    },
+    {
+      "path": "core/flow-storyboard-director.md",
+      "sha256": "673e032ac67e092ee3ba3185ed92a526701942119128186bf36ee416feee8064",
+      "size": 6700
+    },
+    {
+      "path": "divisions.json",
+      "sha256": "9cd3e7adfa7f48946e37c7c5eb9549577275ba94ba026cd3721e15f46d943829",
+      "size": 1405
+    },
+    {
+      "path": "examples/generated-storyboard-package.md",
+      "sha256": "bfbaf4c26872102111d049bc3d235ddbaa029aa1d0c396936fab8730aae49914",
+      "size": 4508
+    },
+    {
+      "path": "examples/storyboard-spec.json",
+      "sha256": "8803b66b8688370e733ea40fde70ddb53916d636835839663406102d633be2db",
+      "size": 3243
+    },
+    {
+      "path": "examples/worked-example.md",
+      "sha256": "c05c34ddb7e04cfeb2a2a9549ad92f407d6b20d05a8ab63c53bf012e32f0f298",
+      "size": 6301
+    },
+    {
+      "path": "formats/flow-2d-animation.md",
+      "sha256": "1b49dd16512c3c38704ae4b967b6b673f5917718b653860f212f30af38257ecd",
+      "size": 4307
+    },
+    {
+      "path": "formats/flow-3d-animation.md",
+      "sha256": "1bbdd9e513df164cf5a78fdf22f7312199c03eada5d250cbf651e0d58b8f47c0",
+      "size": 4530
+    },
+    {
+      "path": "formats/flow-ads.md",
+      "sha256": "3d09c7a7a14957b9d66a5264d8ea9bc99f024f33ca4a8562773c40079a5da2c1",
+      "size": 4659
+    },
+    {
+      "path": "formats/flow-documentary.md",
+      "sha256": "9126f641745ca76a60e606cf9abf12d85feba415ebabba7ebcc0e92f86035acc",
+      "size": 4658
+    },
+    {
+      "path": "formats/flow-live-action.md",
+      "sha256": "8f09b36e0accaa802a2a27bd23cf47bcd69cb6419f2139ffb5000d07565889a7",
+      "size": 4421
+    },
+    {
+      "path": "formats/flow-music-video.md",
+      "sha256": "6e839eed926621943e251d31c474ac290edc50c5c80357719a85accd151dc583",
+      "size": 4811
+    },
+    {
+      "path": "prompts/README.md",
+      "sha256": "c856f3cf1d5c707b81db9c7e7ed1a642258b302f695412917310773aed5fbb61",
+      "size": 1291
+    },
+    {
+      "path": "prompts/storyboard-contact-sheet.md",
+      "sha256": "ab978f180b5f79f1d9e08a3803f3d9825e9afc8cfde0c3b9c559a8b5c10d8ace",
+      "size": 1472
+    },
+    {
+      "path": "reference/ADAPTING-OTHER-GENERATORS.md",
+      "sha256": "46b67bc927557932412abac648d6ea2951eb97fe32d31eaadaaee5294e9efc56",
+      "size": 3748
+    },
+    {
+      "path": "reference/FAILURE-MODES.md",
+      "sha256": "9fc8236018293468bf15f4613eeb8a0ad2f270241d9e374f790312a9fe5b22d2",
+      "size": 7675
+    },
+    {
+      "path": "reference/FLOW-FEATURES.md",
+      "sha256": "6fa63b6815a3010f18fe3e11d9304b6d9d873daa960f50901021955db4ddfe03",
+      "size": 7099
+    },
+    {
+      "path": "reference/MIGRATING.md",
+      "sha256": "f80e1d90491343bdbd78b9401a1c2acc7906efd8c5cbf58246bb751fdb9b1198",
+      "size": 1313
+    },
+    {
+      "path": "reference/PLAYBOOK.md",
+      "sha256": "97fb0bc10475c5a76338b457e2e7960baf97f5e160d38e777f8a0ae802a1229d",
+      "size": 10161
+    },
+    {
+      "path": "reference/RELEASE-PROCESS.md",
+      "sha256": "724fb47c0930877a92e713040a161d2b0f54944dcee59ca03385a71f64691a43",
+      "size": 2394
+    },
+    {
+      "path": "reference/TEMPLATES.md",
+      "sha256": "80beaad3465c958c35ad1cd3c02bf64e7dee79ebc454f5cab2a6ede3198513d7",
+      "size": 10694
+    },
+    {
+      "path": "reference/UPDATE-GUIDE.md",
+      "sha256": "61a542de882fa6f913c04cf614e637a81470d24c3bc93c807a77410431e8ef3a",
+      "size": 2317
+    },
+    {
+      "path": "reference/VERIFICATION.md",
+      "sha256": "6c21e59aec2c854731a8da289162fad864e314d5afca80e5f7a52916e713865e",
+      "size": 5435
+    },
+    {
+      "path": "reference/VERSIONING.md",
+      "sha256": "ce84b2dcdd475d1433d71a19977306428cacccc1443ebaa1411a727edf698a3f",
+      "size": 1458
+    },
+    {
+      "path": "release-history/README.md",
+      "sha256": "8c3e9aef1608e5bc9610881175a2a52b7e3c75bc9e8d69e526a224a748580ccc",
+      "size": 722
+    },
+    {
+      "path": "release-history/index.json",
+      "sha256": "8d06a80dfe5ae8a1588903b757fa1e1a77a3c422ef933244cbd2dd0b0b7b8068",
+      "size": 769
+    },
+    {
+      "path": "release-history/v1.3.0.md",
+      "sha256": "d5c2a592d1e630f0f9c52bfd24aa042d39457f55f62c2545e99a4fdd18fa5227",
+      "size": 1501
+    },
+    {
+      "path": "release-history/v1.3.1.md",
+      "sha256": "c753ae920e0d3bd9982befa78b72b58b52980ed2ae62523042d8a1df0d3b168e",
+      "size": 694
+    },
+    {
+      "path": "release-history/v1.4.0.md",
+      "sha256": "f6280e1e5b6d1952bc30441ee952932715aed28fc748467e49423457fc8ccc40",
+      "size": 1015
+    },
+    {
+      "path": "release-history/v1.5.0.md",
+      "sha256": "3a7b28b35c0be8382d72f87ade01cf9bb90abc379b1f83741919e003f3bbb324",
+      "size": 1619
+    },
+    {
+      "path": "release-history/v1.6.0.md",
+      "sha256": "e108c2bf6b3f23c9cd4cd1a4ccb8be24d5e2c94f9541305121684a78dbb94534",
+      "size": 2134
+    },
+    {
+      "path": "scripts/build_release.py",
+      "sha256": "457dc826293bfdde380d9dabcbabbc9fce91763a002ce7c07447c5d5d75413d8",
+      "size": 2991
+    },
+    {
+      "path": "scripts/check_update.py",
+      "sha256": "ed590e5eaba4fb0a4d16e49858ed11245531cae5eaa3a33865bc3c0a49246236",
+      "size": 3014
+    },
+    {
+      "path": "scripts/generate_storyboard_prompt.py",
+      "sha256": "76b1f0e75d5102d55dad85a6760d89c4cbd06294d467f32754967a7e3db5b845",
+      "size": 10714
+    },
+    {
+      "path": "scripts/install.ps1",
+      "sha256": "51d27fbbb07fd47c2b8cbf8119aa46fac8b1b7d42a806ccb192cfba5b3358e8f",
+      "size": 413
+    },
+    {
+      "path": "scripts/install.py",
+      "sha256": "9d058f10c8532ebdbf412617ee0d6956be1e0ac3aee7477fcba26ce04d548723",
+      "size": 8322
+    },
+    {
+      "path": "scripts/install.sh",
+      "sha256": "7111bb921311e6b1846d4bb0adfd288a45062ede9eada5e6f33176d66bf476ee",
+      "size": 247
+    },
+    {
+      "path": "scripts/package_utils.py",
+      "sha256": "d6d4fead18b743c523c1099178bf0e9e902ab75f9c1d9809e71e396021a7aaf8",
+      "size": 13314
+    },
+    {
+      "path": "scripts/start_release.py",
+      "sha256": "f244ebab2ce1a6e9c79a9bd05b10e684628230075829d1b07748c2449bf15e2d",
+      "size": 4185
+    },
+    {
+      "path": "scripts/update.ps1",
+      "sha256": "e4495f784a50569e29a4ea5c48aba09956ffa5633eb24f14f0837ac40f82aa1c",
+      "size": 412
+    },
+    {
+      "path": "scripts/update.py",
+      "sha256": "a58e364b02f02099025ba7e9b55b45cbadb69ca56b1df14b83000ea275ae4998",
+      "size": 11668
+    },
+    {
+      "path": "scripts/update.sh",
+      "sha256": "044baa2cc2ac202bfcabf08985b5a1696a703aa4cdbddd9d7e615a713180be4e",
+      "size": 246
+    },
+    {
+      "path": "scripts/validate.py",
+      "sha256": "257333774f2df0941f9e13f62c68c10e0bfabd57c47c8c73ab3bea709f674786",
+      "size": 31949
+    },
+    {
+      "path": "scripts/verify_package.py",
+      "sha256": "36f7b03249158e464afe88260b68175ee1d69968a21e9e7ca584456f4ccb02b6",
+      "size": 10203
+    },
+    {
+      "path": "tests/fixtures/fail_backward_refs.md",
+      "sha256": "451464a7cfa0984ec5a2766778f3489857c31015c73c0aae935a81df3884c431",
+      "size": 294
+    },
+    {
+      "path": "tests/fixtures/fail_bare_handle_after_declaration.md",
+      "sha256": "6519fb99ccff7024a6b1c7515008e0cfcc9ea4b46e3d5431ed33e2859e1908d7",
+      "size": 325
+    },
+    {
+      "path": "tests/fixtures/fail_beats_duplicate.md",
+      "sha256": "bbdbdfd6a297f8bdfb4f4399397af54d5b286d9771570b0fe5d6afaaceb58218",
+      "size": 192
+    },
+    {
+      "path": "tests/fixtures/fail_beats_gap.md",
+      "sha256": "76abe419f88e05e98760b51b07da75f1deafa22d4c2b0ff36ecac769ef7c00f2",
+      "size": 150
+    },
+    {
+      "path": "tests/fixtures/fail_beats_malformed.md",
+      "sha256": "f31e8fbe7f016d93a30605d521127e876696953128007875865a56d1aa571431",
+      "size": 210
+    },
+    {
+      "path": "tests/fixtures/fail_beats_out_of_order.md",
+      "sha256": "35a4caf538e3305f5f0f31cc6b0ac54eca9a9cddda2fa43c4c29d5b4816bb903",
+      "size": 174
+    },
+    {
+      "path": "tests/fixtures/fail_flow_quality_references.md",
+      "sha256": "fe419416444159be42c5a1d5b7dea342d53ed76ebd383c968945eed1cdafe36f",
+      "size": 421
+    },
+    {
+      "path": "tests/fixtures/fail_markdown_heading.md",
+      "sha256": "96364107fbfe91ab66e970fb5ea60464a71f4639a6592d871e4c3f7b7d5a2c55",
+      "size": 127
+    },
+    {
+      "path": "tests/fixtures/fail_middle_segment.md",
+      "sha256": "94113161a9ab4a4d56001a5b804ef62c558a29716b72190ee434bb55232dea90",
+      "size": 418
+    },
+    {
+      "path": "tests/fixtures/fail_no_audio.md",
+      "sha256": "086ff4355bf26bf8f949b9a2d799acb799d8a7ce1243f704fc61b07fecdcbbf6",
+      "size": 168
+    },
+    {
+      "path": "tests/fixtures/fail_no_notext.md",
+      "sha256": "9e26804d01f5333c7b1bb8ada1e8a9872500f419d4759274da13fd2ba0b1301c",
+      "size": 164
+    },
+    {
+      "path": "tests/fixtures/fail_omni_extend_api.md",
+      "sha256": "9825afb064a52e4f8401d7d4f893e5134e329d36e9b717c99c4604b5e13050b0",
+      "size": 329
+    },
+    {
+      "path": "tests/fixtures/fail_omni_first_last_flow.md",
+      "sha256": "642eebf82877295310c0ceac3ecc04ee03e9d6d9722dd06a619181426e7aab2b",
+      "size": 319
+    },
+    {
+      "path": "tests/fixtures/fail_reference_missing_at.md",
+      "sha256": "9e9c263b1ee0317d2f276202fbb5b629286d4a28d685688eaf65d42eca050de6",
+      "size": 343
+    },
+    {
+      "path": "tests/fixtures/fail_reference_space.md",
+      "sha256": "913e89de39eaf2119de85c331880b206a5260ca4121c50fdbc6fd1e84282b13a",
+      "size": 347
+    },
+    {
+      "path": "tests/fixtures/fail_specs.md",
+      "sha256": "c48724790c6f0302bbfafcef4f8effc975ba8990c184af7ccd90f6247709bece",
+      "size": 228
+    },
+    {
+      "path": "tests/fixtures/fail_storyboard_10s_3x3.md",
+      "sha256": "4060f6c34b208d663f3a9fd1a9081e6fbfd042313e6b5c306545b049f44635b1",
+      "size": 977
+    },
+    {
+      "path": "tests/fixtures/fail_storyboard_contract.md",
+      "sha256": "d4aa444a962c24534988fc465384c3174ca515e46ad25f7be5d47c56aefad48b",
+      "size": 468
+    },
+    {
+      "path": "tests/fixtures/fail_storyboard_duplicate_panel.md",
+      "sha256": "476958f8e64f9a50ffb2a102806d394417a80c79248f8fbca2916b12cccfc19e",
+      "size": 678
+    },
+    {
+      "path": "tests/fixtures/fail_storyboard_missing_panel.md",
+      "sha256": "5ea83d5ffe6ca9b845ecd6e1321be95c709851eeafabb215fe5b7a1108f073b3",
+      "size": 655
+    },
+    {
+      "path": "tests/fixtures/fail_storyboard_video_beats.md",
+      "sha256": "9a3478ed74413dad05ee95fc3cb5d7e930ee4e52b6f8e507bb7656ea25dfe959",
+      "size": 675
+    },
+    {
+      "path": "tests/fixtures/fail_text_policy_not_first.md",
+      "sha256": "cdeffba7fa5aae1871d8234d8610cd086f325dae179602f99a3d0b7dce2bc1b8",
+      "size": 196
+    },
+    {
+      "path": "tests/fixtures/fail_token_bleed.md",
+      "sha256": "7d19fd8c5b3cc5a074c5251be48571d333ccfd117af7b1548526088952972e26",
+      "size": 292
+    },
+    {
+      "path": "tests/fixtures/fail_veo_reference_four_second.md",
+      "sha256": "ac45e08d99e34b2f9ff02aa288ba25694123b72f9168c779d89c8e8590e4dfa0",
+      "size": 325
+    },
+    {
+      "path": "tests/fixtures/fail_veo_ten_second.md",
+      "sha256": "5202c18a0ecd5b023fcc6929481c034e961f9283f0b43c82e3414fb6d148919b",
+      "size": 355
+    },
+    {
+      "path": "tests/fixtures/pass_api_omni_three_second.md",
+      "sha256": "914bbe2e6795910d45f0bf368a932e4a23d38abe86463f49d763a01573a1f321",
+      "size": 299
+    },
+    {
+      "path": "tests/fixtures/pass_audio_disabled.md",
+      "sha256": "1509fb565c198568b63244a274410316edcefac4872e6d910d5ac5b72c2c97e9",
+      "size": 169
+    },
+    {
+      "path": "tests/fixtures/pass_clean.md",
+      "sha256": "0a7393c5d06094536ecefe6ca4c5a79a8159df1bbe8c78c2926974221e96418f",
+      "size": 1407
+    },
+    {
+      "path": "tests/fixtures/pass_documentation.md",
+      "sha256": "a0a41c4cc07d615b940fb5209e2830ef7f22c30d0c06363148d1fe06aa8a6bcd",
+      "size": 190
+    },
+    {
+      "path": "tests/fixtures/pass_example_fence.md",
+      "sha256": "84173e96ec4d832e026fa04e10e587fb3aa18466be016bebe32d41182281273f",
+      "size": 374
+    },
+    {
+      "path": "tests/fixtures/pass_flow_omni_four_second.md",
+      "sha256": "80aeefd660bcfa0b9a1f27fc3a2ecb707b1e98a7b3bc259684bc6064b31bfc3c",
+      "size": 306
+    },
+    {
+      "path": "tests/fixtures/pass_flow_veo_lite_extend_8.md",
+      "sha256": "00ff488af55174353147155ee66da178d554dbaeeb875e4be07d561aa48fbdb6",
+      "size": 468
+    },
+    {
+      "path": "tests/fixtures/pass_intentional_silence.md",
+      "sha256": "85f757be7df458783b6f6612a0809dde1f796bb8097ed49e5d13b49d5871f3e1",
+      "size": 174
+    },
+    {
+      "path": "tests/fixtures/pass_intentional_text.md",
+      "sha256": "0154a21f11183ca790c8ef8ea51199cbe9d974112c0b48ee52fab877faf6d94b",
+      "size": 250
+    },
+    {
+      "path": "tests/fixtures/pass_multiple_segments.md",
+      "sha256": "f36e291bac7e7adc5c664c57e0a5152ff417938d122fa5b8d52c2f90e576cf16",
+      "size": 283
+    },
+    {
+      "path": "tests/fixtures/pass_omni_variable_intervals.md",
+      "sha256": "98c07ceb5ac3b9729c7f7b50463121c40dd65fc80aced5514b8988325e33304e",
+      "size": 448
+    },
+    {
+      "path": "tests/fixtures/pass_storyboard_10s_2x2.md",
+      "sha256": "95a96d17bfb7cf08b9f3d6f690adff3a72c90490828b13c45a9160cf84c92fdd",
+      "size": 1341
+    },
+    {
+      "path": "tests/fixtures/pass_storyboard_nine_explicit.md",
+      "sha256": "009ef5cfed3d5c77b86b67a963500affc45d4fb580b060a28e6e2af3419a9155",
+      "size": 984
+    },
+    {
+      "path": "tests/fixtures/pass_storyboard_panels.md",
+      "sha256": "88167b6ea8257068569158632983356665ad544df9c8b9d2b6fdf92cca5dedae",
+      "size": 1220
+    },
+    {
+      "path": "tests/fixtures/pass_ten_second.md",
+      "sha256": "ad207ecc9f46f1deb5bec078575b438dd4ec381f77e5af243b5d896be917774b",
+      "size": 866
+    },
+    {
+      "path": "tests/run_tests.py",
+      "sha256": "62537ef1f21f26c1bab2dada9ee4de5eb583378bae6a28d8933275303dc5fec4",
+      "size": 26952
+    }
+  ],
+  "generated_at": "2026-07-23T23:29:28Z",
+  "package": "google-flow-scripting-skill",
+  "schema_version": 1,
+  "version": "1.6.0"
+}

@@ -18,7 +18,7 @@ background blur, gentle film grain, [RATIO], smooth cinematic motion.
 Not photorealistic, not live action, not 2D.
 ```
 
-Add a palette in plain words — "warm earth tones with deep reds and gold", never hex codes.
+Add a palette in plain words  -  "warm earth tones with deep reds and gold", never hex codes.
 
 ## What 3D rewards
 
@@ -26,7 +26,7 @@ Add a palette in plain words — "warm earth tones with deep reds and gold", nev
 
 **Faces that carry the story.** 3D animation lives on expression. Write facial beats explicitly: "his smile holds by muscle memory alone while the light goes out of his eyes."
 
-**Physical comedy with real timing.** Beats can specify a slow topple, a hang-time, an impossibly fluid recovery. Give the physics: "for a big man, astonishingly agile — he pivots on one slipper and vaults the table."
+**Physical comedy with real timing.** Beats can specify a slow topple, a hang-time, an impossibly fluid recovery. Give the physics: "for a big man, astonishingly agile  -  he pivots on one slipper and vaults the table."
 
 **Animals as characters.** They can carry emotional weight a human line would overplay. Give them the same handle discipline and signature poses as any lead.
 
@@ -34,13 +34,13 @@ Add a palette in plain words — "warm earth tones with deep reds and gold", nev
 
 ## Character sheets
 
-Beyond the standard fields, specify: proportion style, eye size relative to the cast, skin shading, and **signature poses** — the repeated gestures a running motif depends on. A gesture without a pose in the sheet will look different every time.
+Beyond the standard fields, specify: proportion style, eye size relative to the cast, skin shading, and **signature poses**  -  the repeated gestures a running motif depends on. A gesture without a pose in the sheet will look different every time.
 
 Include an expression sheet for any character whose face carries a turn in the story.
 
 ## Camera
 
-3D takes camera moves that would be impractical live: continuous crane rises, 180-degree orbits, slow-motion inserts, whip-pans into extreme close-up. Use them, but state the distance and speed — "a slow 20cm push-in across the full segment".
+3D takes camera moves that would be impractical live: continuous crane rises, 180-degree orbits, slow-motion inserts, whip-pans into extreme close-up. Use them, but state the distance and speed  -  "a slow 20cm push-in across the full segment".
 
 ## Lighting
 

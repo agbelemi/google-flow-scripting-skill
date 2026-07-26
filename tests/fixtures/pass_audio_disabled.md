@@ -4,7 +4,7 @@ VIDEO PROMPT 01
 
 ```
 NO TEXT IN THE IMAGE: none.
-LOCATION: ForestPath.
+LOCATION: @ForestPath.
   0-1s: a
   1-2s: b
   2-3s: c

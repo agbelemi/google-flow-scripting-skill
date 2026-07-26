@@ -28,11 +28,11 @@ Not commercial-glossy, not studio-lit, not cinematic.
 
 ## Ask these before writing
 
-1. **Duration and platform** — 6s bumper, 15s, 30s, 60s, or a set of cutdowns. Build them from 4, 6 or 8-second segments: a 15s spot is two 8s segments trimmed, or 8+6, depending on where the cut falls
-2. **Aspect ratio per platform** — 9:16 for social, 16:9 for web and pre-roll. These are the only two that generate natively; a 1:1 feed version is cropped from one of them in post, so decide which and frame for the crop
-3. **The single message** — one, not three
-4. **Brand constraints** — colours, typography, logo rules, tone, anything legally required
-5. **Product accuracy** — is there a real product that must render exactly?
+1. **Duration and platform**  -  6s bumper, 15s, 30s, 60s, or a set of cutdowns. Build them from 4, 6 or 8-second segments: a 15s spot is two 8s segments trimmed, or 8+6, depending on where the cut falls
+2. **Aspect ratio per platform**  -  9:16 for social, 16:9 for web and pre-roll. These are the only two that generate natively; a 1:1 feed version is cropped from one of them in post, so decide which and frame for the crop
+3. **The single message**  -  one, not three
+4. **Brand constraints**  -  colours, typography, logo rules, tone, anything legally required
+5. **Product accuracy**  -  is there a real product that must render exactly?
 
 ## The product is an asset
 
@@ -80,7 +80,7 @@ When this workflow generates audio, direct it explicitly. Use `AUDIO: Intentiona
 
 Advertising sound is designed and deliberate. The product should be audible.
 
-- **Dialogue** is often a single line or a voiceover. Quote it exactly and specify the tone — warm, confident, conversational.
+- **Dialogue** is often a single line or a voiceover. Quote it exactly and specify the tone  -  warm, confident, conversational.
 - **SFX** should feature the product: the click of a lid, the pour, the seal, the switch. This is the format where a sound effect can be the hero.
 - **Ambient** should be clean and controlled rather than busy.
 - **Not heard**: keep competing noise out so the product sound and the line stay clear.

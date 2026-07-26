@@ -1,0 +1,46 @@
+{
+  "segment_id": "1",
+  "segment_length": 10,
+  "characters": ["@Kwame", "@CafeLadies"],
+  "location": "@SidewalkCafe",
+  "panel_aspect_ratio": "9:16",
+  "style": "High-quality stylised 3D animated feature-film stills with soft skin shading, expressive eyes, physically based materials, subtle film grain, and cinematic depth of field.",
+  "location_description": "A broad urban sidewalk of large grey paving slabs. The road stays far left, potted palms line the cafe boundary, round tables sit on the right beneath a green-and-white striped awning, and the glass frontage stays behind the tables.",
+  "lighting": "Hot late-morning sunlight from high and camera-left, with short crisp shadows and bright reflected light from the paving.",
+  "camera_plan": "The camera begins at ground level beside the kerb, rises to a low medium view, then tracks backward slightly ahead of @Kwame.",
+  "continuity": [
+    "@Kwame keeps the same face, hairstyle, shirt, trousers, belt, sunglasses, and perfectly intact polished black shoes in every panel.",
+    "@CafeLadies remain seated at the established table in the background-right and do not react during this segment.",
+    "@SidewalkCafe keeps the same road, kerb, palms, awning, tables, glass frontage, and lighting direction in all four panels."
+  ],
+  "operator_notes": [
+    "Attach the approved references before generation.",
+    "The highest-risk failure is damaged or changed footwear."
+  ],
+  "panels": [
+    {
+      "moment": "The opening moment at 0 seconds.",
+      "framing": "Extreme low-angle ground-level close-up beside the kerb.",
+      "action": "Only @Kwame's lower trouser leg and one immaculate black Oxford shoe are clear as the shoe lands on the paving beside a cropped yellow taxi door.",
+      "forbidden_actions": ["Do not show @Kwame's full body", "Do not show clothing adjustments", "Do not damage the shoe"]
+    },
+    {
+      "moment": "The first major change at 3 seconds.",
+      "framing": "Low-angle medium shot beside the kerb.",
+      "action": "@Kwame is fully upright and slides the established dark sunglasses onto his face in one smooth movement. His shirt is already neat.",
+      "forbidden_actions": ["Do not show shirt pulling", "Do not show collar adjustment", "Do not add another grooming action"]
+    },
+    {
+      "moment": "The movement state at 6 seconds.",
+      "framing": "Low-angle medium tracking-style composition from slightly ahead of @Kwame.",
+      "action": "@Kwame begins a slow controlled swagger toward the camera while @CafeLadies remain seated and continue their conversation behind him.",
+      "forbidden_actions": ["Do not show a shoulder flick", "Do not make @CafeLadies look at @Kwame", "Do not introduce extra people near @Kwame"]
+    },
+    {
+      "moment": "The final handoff frame at 10 seconds.",
+      "framing": "Low-angle medium cinematic shot with @Kwame dominant and @CafeLadies visible over his shoulder in soft focus.",
+      "action": "@Kwame is mid-stride at maximum confidence. His sunglasses catch a small reflection of sunlight and both shoes remain intact and polished.",
+      "forbidden_actions": ["Do not introduce a new action", "Do not show @CafeLadies reacting", "Do not alter the shoes"]
+    }
+  ]
+}

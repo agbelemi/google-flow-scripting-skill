@@ -1,39 +1,42 @@
-<!-- validate:ignore-file -->
-# Paste-anywhere prompts and native Skill
+# Prompt templates
 
-The repository root is a native `SKILL.md` package for Claude Code, Cursor and Windsurf. This folder remains the no-install, paste-anywhere route for other assistants.
+This directory contains copy-paste prompt contracts that are intended to be generated or filled with project-specific details.
 
-## Fastest route
+## Storyboard contact sheet
 
-Paste [`../reference/PLAYBOOK.md`](../reference/PLAYBOOK.md) into a fresh chat, then say what you are making:
+Use `storyboard-contact-sheet.md` as the canonical visual-storyboard contract.
 
-> "Following this playbook, develop a 90-second 2D animated explainer. 8-second segments, 16:9."
-
-## Add a specialist
-
-For format-specific craft, paste the matching agent file after the playbook:
-
-| Making | Paste |
-|---|---|
-| 3D animation | `../formats/flow-3d-animation.md` |
-| 2D animation | `../formats/flow-2d-animation.md` |
-| Live action | `../formats/flow-live-action.md` |
-| Documentary | `../formats/flow-documentary.md` |
-| Advert | `../formats/flow-ads.md` |
-| Music video | `../formats/flow-music-video.md` |
-
-## Add the templates
-
-When you reach prompt-writing, paste [`../reference/TEMPLATES.md`](../reference/TEMPLATES.md) so the model uses the exact shapes rather than inventing its own.
-
-## Before generating
-
-Paste [`../core/flow-continuity-auditor.md`](../core/flow-continuity-auditor.md) and ask for an audit of the finished script. Or run the validator if you have Python:
+The preferred route is the executable generator:
 
 ```bash
-python ../scripts/validate.py your-script.md --segment-length 8
+python scripts/generate_storyboard_prompt.py examples/storyboard-spec.json \
+  --output storyboard-package.md
 ```
 
-## Minimum viable version
+The generated package separates:
 
-If you can only paste one thing, paste the playbook. Everything else is elaboration on it.
+1. internal operator notes
+2. the exact image-generation prompt
+3. the human approval checklist
+
+Only section 2 is sent to the image generator.
+
+Every generated character or location reference must use one canonical handle:
+
+```text
+@Kwame
+@CafeLadies
+@SidewalkCafe
+```
+
+Do not use bare names after a handle is declared. Do not use spaces or punctuation inside a handle.
+
+For a ten-second scene with four authored states, use four panels in a 2x2 grid. Use a 3x3 grid only when all nine distinct frames were authored in advance.
+
+Every storyboard generation prompt begins exactly with:
+
+```text
+GENERATE THE STORYBOARD IMAGE NOW.
+```
+
+The prompt must request the image immediately, declare the exact panel count and layout, prohibit a planning response, prohibit invented actions, and require only the completed contact sheet.

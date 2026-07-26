@@ -1,266 +1,307 @@
 <!-- validate:ignore-file -->
-# THE PLAYBOOK
-### Production method and configurable defaults for Google Flow
+# The Playbook
 
-*Documentation reviewed 23 July 2026. See `FLOW-FEATURES.md` and `VERIFICATION.md`; current official documentation and the live interface take precedence.*
+Production method and configurable defaults for Google Flow and the Gemini API.
 
-Every agent in this repository is built on this document. If you read only one file, read this one.
-
----
+Documentation reviewed 24 July 2026. Current official documentation and the active interface take precedence.
 
 ## 1. The constraint that drives everything
 
-**Independent generations have no guaranteed implicit memory.**
+Independent generations have no guaranteed implicit memory.
 
-Do not assume a fresh generation can infer the previous clip or resolve phrases such as "the same character as before." Carry continuity explicitly through attached references, saved frames, first/last-frame controls, extensions and fully stated current conditions.
+Carry continuity explicitly through approved references, saved frames, model-supported controls, editing, extension, fully stated current conditions and a state ledger.
 
-Three working consequences follow. Apply them alongside the actual reference and frame controls available in the current interface.
+### 1.1 Every prompt is self-contained
 
-**1.1 — Every prompt must be self-contained.** Style, location, layout, lighting, cast, wardrobe, physical state, camera, action, audio and ending, restated every time. A prompt must be generatable cold, out of order, with no other context.
+State the relevant style, location, layout, lighting, cast, wardrobe, physical state, camera, action, audio and ending in the prompt that needs them.
 
-**1.2 — Never write a backward reference.** "The same vendor", "continuing from before", "as in scene 2", "he is still wet" — not usable as a standalone identity or state instruction. If a character is wet, say *he is wet*.
+### 1.2 Never use vague backward references
 
-**1.3 — Identity carries through explicit references plus current-state instructions.** Words alone do not reliably preserve identity. Use an attached reference or saved frame where available, then describe only the state and action the reference cannot show.
+Do not write `the same vendor`, `as before`, `continuing from scene 2`, or `still wet`. Name the current state and the actual attached reference.
 
----
+### 1.3 References carry identity
 
-## 2. Hard specifications
+Use an approved image or frame where available. Describe only the state, action, wardrobe variation or held object that the reference does not already show.
 
-These are generator limits, not style choices. Design the whole project around them.
+## 2. Mandatory capability profile
 
-| Setting | Supported | Notes |
-|---|---|---|
-| **Segment length** | **4s, 6s or 8s** | 8s is the default and the usual working choice |
-| **Aspect ratio** | **16:9 or 9:16** | These two only. 1:1, 4:3 and 2.39:1 must be cropped or letterboxed in post |
-| **Resolution** | 720p or 1080p | Upscaling to 2K and 4K available |
-| **Frame rate** | 24fps | |
-| **Reference images** | Up to 3 per generation | Via Ingredients to Video |
-| **Audio** | Native, generated with the video | Directed by your prompt text |
-| **Longer shots** | Extend continues a clip past its base length | Builds from the final moment of the previous clip |
+Ask for these before writing scenes:
 
-**There is no 10-second segment.** A script written in 10-second units cannot be generated. Choose 4, 6 or 8 and build the whole structure on it.
+1. surface: Google Flow or Gemini API
+2. model
+3. mode
+4. duration
+5. aspect ratio
 
-**Ask the user for segment length and aspect ratio before writing anything.** Every scene duration, beat count and composition depends on both.
+Read `reference/FLOW-FEATURES.md` for the current matrix.
 
----
+### 2.1 Duration summary
 
-## 3. The asset system
+| Surface and model | Common supported duration |
+|---|---|
+| Flow, Veo 3.1 Lite or Fast | 4s, 6s, 8s |
+| Flow, Veo 3.1 Quality | 8s |
+| Flow, Gemini Omni Flash | 4s, 6s, 8s, 10s |
+| Gemini API, Veo 3.1 | 4s, 6s, 8s, subject to mode restrictions |
+| Gemini API, Gemini Omni Flash | 3s through 10s |
+
+Never describe Omni as simply a 10-second version of Veo. It has a separate reference and conversational-editing workflow.
+
+### 2.2 Token limits
+
+- Veo 3.1 API: 1,024 text-input tokens.
+- Gemini Omni Flash: 1,048,576-token total multimodal context window.
+- No separate universal Flow prompt-editor character limit was found in the official sources reviewed for this release.
+
+Use a practical safety margin for Veo API prompts. Local token estimates are advisory unless they use the production tokenizer.
+
+## 3. Canonical reference handles
+
+Every character and location reference starts with `@`, followed by an alphanumeric PascalCase name with no spaces or punctuation.
+
+```text
+@Kwame
+@CafeLadies
+@SidewalkCafe
+```
+
+Convert `Cafe Ladies` to `@CafeLadies`. Keep the handle identical in every file and generated script.
 
 ### 3.1 What needs a locked reference
 
-Lock a reference image for:
+Create a locked reference for:
 
-- Every named character, without exception
-- **Every extra featured in frame** — the camera holds on them, or their hands, face or body carry a beat — **even if they appear once**
-- Every extra appearing in more than one segment
-- Every recurring group, as one group plate
-- Every environment
-- Every product or hero object
+- every named character
+- every featured extra, even if appearing once
+- every recurring extra
+- every recurring group
+- every environment
+- every product or hero prop whose appearance must remain exact
 
-Leave as plain description only: true background texture, and one-shot props.
+True background texture and disposable one-shot objects can remain descriptive.
 
-> **The threshold is *featured OR recurring*, not recurring alone.**
-> A vendor appearing in two shots whose hands open the film is featured. Without a locked reference she will be a woman in one clip and a man in the next. This is the most commonly reported failure in AI video production.
+### 3.2 Reference allocation is model-specific
 
-### 3.2 How references bind
+#### Veo
 
-Flow's mechanism is **Ingredients to Video** — up to three reference images supplied per generation. Some builds also expose `@` shorthand for saved assets. Use whichever your interface offers; the discipline is identical.
+Veo reference-image generation supports up to three subject references. Use an approved composite plate when a shot needs more identity sources than the selected mode accepts.
 
-Two rules that matter more than the mechanism:
-
-**Reference images should sit on a plain or segmented background.** A character reference with a busy scene behind it drags that scene into your generation.
-
-**Your text must complement your references, never contradict them.** If a reference shows the character, do not re-describe their face and clothing in competing detail — you are handing the model two sources that will disagree. Describe what the reference cannot show: their *state* right now, what they are doing, what they are holding.
-
-This is the one place in the whole skill where more description makes output worse.
-
-### 3.3 Naming
-
-Short, CamelCase, no spaces, no punctuation: `Maya`, `Leo`, `StreetVendor`, `KitchenInterior`, `ForestClearing`.
-
-Keep names identical everywhere — library, script and prompts.
-
-### 3.4 Environment splitting
-
-One physical location may need more than one reference. If a place is shot both wide and close, and the framings share no anchor objects, they drift apart.
-
-Split when the location is large and some shots sit at a specific station within it.
-
-> A single `Forest` reference fails, because a wide shot of trees and a close shot at a specific clearing share nothing. Split into `ForestPath` and `ForestClearing`.
-
-Do not split small enclosed sets. One room is one reference, held by a set anchor.
-
-### 3.5 Set anchors
-
-Every environment carries a fixed **set anchor** paragraph, repeated in every prompt using it.
-
-```
-Location: CottageInterior. A single room roughly four by five metres.
-Fixed layout: a heavy door at the back wall, a small window to its left,
-a long wooden table in the centre, a stone hearth on the right wall with
-a large iron pot, a bed in the far left corner, herbs hanging from the
-ceiling beams.
+```text
+SLOT 1: @Lead
+SLOT 2: @SupportingPlate
+SLOT 3: @Location
 ```
 
-For station environments the anchor must also state **where people stand**:
+#### Omni
 
-```
-Location: MarketStall. The wooden counter is in frame at all times and
-the vendor stands behind it, never out in the open lane.
-```
+Omni has a separate multi-image workflow. Use direct references and image-role tags where the surface supports them. Do not impose a three-reference ceiling.
 
----
-
-## 4. Audio
-
-**Choose an audio policy for the project.** In generated-audio workflows, an undirected prompt may produce unwanted sound, so direct it explicitly. Deliberate silence is written as `AUDIO: Intentional silence.` For visual-only previs or replacement sound in post, record that choice and disable the mechanical audio check.
-
-### 4.1 Syntax
-
-```
-Dialogue — use quotation marks and name the speaker:
-    Maya says, "We have to leave now." - quiet, urgent.
-
-SFX — describe plainly and tie to visible action:
-    SFX: the door latch clicks as her hand turns it.
-
-Ambient — define the background bed:
-    Ambient: distant birdsong and wind through leaves.
+```text
+@Lead -> <IMAGE_REF_0>
+@SupportingGroup -> <IMAGE_REF_1>
+@Location -> <IMAGE_REF_2>
+@HeroVehicle -> <IMAGE_REF_3>
 ```
 
-### 4.2 Keep it thin
+### 3.3 Build plates from images, never identity prose
 
-One line of dialogue, one primary sound effect and one ambient bed is the working maximum for a short clip. Crowded soundscapes come out muddy.
+Composite approved reference images. Never recreate an identity by describing it in words.
 
-Vagueness produces generic noise. "Spooky sounds" gives you nothing. "A faint metallic creak and a low draught through the chimney" gives you the scene.
+```text
+NO TEXT IN THE IMAGE: no labels, captions or watermarks.
+SOURCE REFERENCES: @CharacterOne, @CharacterTwo
 
-### 4.3 State what should not be heard
-
+Create one clean group reference plate from the attached approved images.
+Preserve each face, hairstyle, body shape, wardrobe item and accessory.
+Use a plain neutral background. Do not redesign or substitute anyone.
 ```
-Not heard: no music, no other voices, no traffic.
+
+Crop one clean view from a turnaround sheet before compositing to avoid duplicate bodies.
+
+### 3.4 Set anchors
+
+Every environment has a fixed set-anchor paragraph repeated wherever it is used.
+
+```text
+LOCATION: @CottageInterior. One room roughly four by five metres.
+Fixed layout: heavy door on the back wall; small window to its left;
+long wooden table in the centre; stone hearth on the right wall; bed in
+the far-left corner; herbs hanging from ceiling beams.
 ```
 
-### 4.4 Silence is a choice you must make explicitly
+State screen direction and where people stand when geography matters.
 
-If a moment should be silent, say so. Removing sound at an emotional low point is powerful, but only if you ask for it.
+## 4. Storyboard before video
 
-### 4.5 Practical limits
+Storyboard every segment as a separate image-generation task.
 
-Lip-sync accuracy and effect timing vary between runs. For dialogue that must land exactly, generate several times and select, or replace the audio in post. Treat generated audio as a strong draft, not a locked mix.
+Hard rule:
 
----
+> "A storyboard-generation prompt must command image generation in its first sentence, declare the exact output count and layout, prohibit planning responses, and enumerate forbidden invented actions."
 
-## 5. Structure and arithmetic
+The first sentence is:
 
-- One **segment** = one prompt = one generation.
-- A segment has **one beat per second**. An 8-second segment has 8 beats.
-- Scene lengths must be whole multiples of the segment length.
-- Runtime = segments x segment length.
-- If the project needs horizontal and vertical, generate hero moments **natively vertical** rather than cropping. Vertical wants tighter framing and action in the centre band.
+```text
+GENERATE THE STORYBOARD IMAGE NOW.
+```
 
-### Budget arithmetic
+### 4.1 Default panel layouts
 
-Most shots are not right first time. **Expect three to five attempts per segment.** Budget for it and tell the user up front.
+| Duration | Panels | Layout |
+|---|---:|---|
+| 4s | 2 | 2x1 |
+| 6s | 3 | 3x1 |
+| 8s | 3 | 3x1 |
+| 10s | 4 | 2x2 |
 
-Draft on the fastest model tier, then commit only approved shots to the highest quality tier. Running everything at top quality is the fastest way to exhaust a plan.
+Use 3x3 only for nine explicitly authored visual frames. Never invent five extra actions to expand a four-frame board.
 
----
+### 4.2 Separate the three outputs
 
-## 6. The pipeline
+1. internal operator note
+2. copy-paste storyboard generation prompt
+3. approval checklist
+
+Never paste operator notes or the checklist into the image generator.
+
+### 4.3 The contact-sheet prompt must prohibit
+
+- a written storyboard
+- a scene breakdown
+- an asset list
+- sound or dialogue notes
+- a permission question
+- extra panels
+- intermediate frames
+- invented actions
+
+It must end by requiring only the completed contact-sheet image.
+
+### 4.4 Static camera wording
+
+A still cannot perform a camera move. State the segment-wide camera plan, then describe the static composition visible at each panel moment.
+
+Crop and save the final approved panel as a standalone image before using it as a handoff reference.
+
+## 5. Audio
+
+Choose an audio policy for the project. Direct generated audio explicitly or declare that audio will be replaced.
+
+```text
+Dialogue: @Maya says, "We have to leave now." - quiet and urgent.
+SFX: the latch clicks as her hand turns it.
+Ambient: distant birdsong and wind through leaves.
+Not heard: no music, no traffic, no other voices.
+```
+
+For silence:
+
+```text
+AUDIO: Intentional silence.
+```
+
+Keep short clips sonically focused. One dialogue line, one primary effect and one ambient bed are usually enough.
+
+## 6. Structure, timing and arithmetic
+
+- One segment equals one video generation.
+- Scene lengths should divide cleanly into the chosen segment duration.
+- Runtime equals segment count multiplied by segment duration.
+- Storyboard panel count follows the selected layout.
+- Retry assumptions must be stated as estimates, not guarantees.
+
+### 6.1 Timing modes
+
+Exact one-second beats are optional.
+
+Use one of:
+
+- `exact`: one interval per second
+- `coverage`: ordered intervals cover the whole duration without gaps or overlaps
+- `loose`: timing guidance exists but is not mechanically exact
+- `off`: no timeline validation
+
+Omni can use natural language or intervals such as:
+
+```text
+[0-3s] @Kwame steps from the taxi.
+[3-6s] @Kwame puts on his sunglasses.
+[6-10s] @Kwame walks toward the camera.
+```
+
+Choose the mode that communicates the action most clearly.
+
+## 7. Pipeline
 
 | Stage | Output | Gate |
 |---|---|---|
-| 1. Brief | Format, segment length, aspect ratio, runtime, tone | |
-| 2. Concept | Logline, structure, ending | |
-| 3. Cast bible | Look, wardrobe, signature gesture, arc | |
-| 4. Breakdown | Scenes with durations, cast, hook, out-point | |
-| 5. Segment script | Camera, beats, audio, required final frame | |
-| 6. Reference list | Every locked reference, named and counted | |
-| 7. Reference images | Generate them all | **Gate: no video before every reference exists** |
-| 8. Storyboard | Still panels per segment | **Gate: no video before panels approved** |
-| 9. Video | One clip per segment | |
-| 10. Assembly | Edit, grade, sound finishing | |
+| 1. Brief | surface, model, mode, duration, ratio, runtime | capability confirmed |
+| 2. Structure | logline, scenes, state ledger | arithmetic confirmed |
+| 3. References | canonical handles and set anchors | every required reference approved |
+| 4. Segment draft | camera, action, audio, ending | references allocated |
+| 5. Storyboard | contact sheet per segment | board approved and final panel cropped |
+| 6. Video prompt | revised against approved board | validator and continuity audit pass |
+| 7. Video | one approved clip per segment | final frame saved |
+| 8. Assembly | edit, grade and sound finishing | complete |
 
-The gates are not optional. Skipping them burns budget discovering faults that cheap stills would have caught.
+## 8. Handoffs
 
----
+Classify each handoff.
 
-## 7. Writing beats
+### Continuation
 
-- **One observable physical action per beat.** Something a camera can see.
-- **Include camera state changes**: "CUT to", "the push-in begins", "WHIP-PAN to".
-- **Give numbers.** "head tilts 10 degrees", "a 20cm push-in", "leans back 30 degrees".
-- **Name emotion through the body**, never the label. Not "she is frightened" but "her hand stops halfway to the latch."
-- **The last beat lands the final frame**, usually ending "hold on this."
-
-### The final frame is load-bearing
-
-Every segment states the exact image it ends on. That image is the generation target, the QA check, and the opening state of the next prompt. Where the interface accepts an end frame as an input, precision here pays twice.
-
----
-
-## 8. Handoffs: cut or continuation
-
-Classify every handoff.
-
-**CONTINUATION** — the same unbroken camera move flowing on:
-
-> This is a direct continuation of the same unbroken shot. At the instant this clip begins the frame looks exactly like this, and the action must carry straight on from it without resetting: [previous final frame, in full].
-
-**CUT** — a new camera setup:
-
-> This is a new camera setup. The story has just reached this point, so the people carry over exactly as described here, but the framing is new and must follow the camera direction below rather than the previous composition: [previous final frame, in full].
-
-Getting this wrong either freezes a camera that should move, or preserves framing that should have been abandoned.
-
----
-
-## 9. Text bleed
-
-Label-shaped tokens get painted into the picture. A prompt containing a colour temperature value and a bracketed location name produced a frame with both rendered into the sky.
-
-**Never put these in a prompt:** colour temperature values, hex colour codes, set or scene names in brackets, bare timecodes.
-
-**Always open every prompt with:**
-
-```
-NO TEXT IN THE IMAGE: do not render any words, letters, numbers,
-captions, subtitles, labels, location names, timecodes, colour
-temperature values or watermarks anywhere in the frame. The only writing
-allowed is writing that physically exists on a prop in the world, and
-only where the description below explicitly names it.
+```text
+CONTINUATION: the new clip begins from the attached @PreviousFinalFrame.
+The opening composition and ongoing movement match that frame without a
+reset. Current visible state: [complete standalone description].
 ```
 
-Use plain words: "warm golden morning light", not a Kelvin value.
+### Cut
 
----
+```text
+CUT: this is a new camera setup. Story state carries over, but framing
+follows the new camera instruction. Current visible state: [complete
+standalone description].
+```
 
-## 10. Exclusions: describe, do not forbid
+Only offer first-and-last-frame interpolation or extension when the chosen surface, model and mode support it.
 
-Positive description outperforms negative commands. Rather than "no buildings", write "an empty moorland stretching unbroken to the horizon".
+## 9. Text bleed and punctuation
 
-Where the interface exposes a **negative prompt field**, put technical exclusions there — watermarks, distortion, extra limbs, on-screen text — and keep the main prompt purely descriptive.
+Avoid tokens that can appear as unwanted text:
 
----
+- colour-temperature values
+- hex colour codes
+- bracketed set labels
+- bare timecodes outside a clearly marked timing section
 
-## 11. Storyboard first
+Do not use em dashes in generated scripts. Use a colon, comma, full stop, parentheses, or spaced hyphen.
 
-Before animating a segment, generate its key moments as **still images**: first frame, one or two middle beats, and the final frame. Check them, then generate the video.
+Video, reference-sheet and ordinary image prompts start with an explicit text policy.
 
-Stills are cheap. Video is not. A wrong face, a drifted set or burned-in text shows up in the stills, and the approved final-frame still is the reference you carry into the next segment.
+Storyboard prompts start with `GENERATE THE STORYBOARD IMAGE NOW.`, declare the output contract, then place the text policy near the top.
 
-**A video prompt cannot output storyboard stills.** Storyboards are separate image generations, always.
+## 10. Prompt length and attention
 
----
+Long prompts trade compactness for precision. Let references carry visual identity and keep action language unambiguous.
+
+- Put the most important constraints near the top.
+- Keep each beat focused on one visible change.
+- Limit exclusions to plausible failures.
+- Shorten before rewriting when the model ignores middle instructions.
+- For targeted Omni edits, describe only the requested change and add `Keep everything else the same.`
+
+Do not state that no prompt limit exists. See section 2.2.
+
+## 11. Positive and negative instructions
+
+Prefer positive visual description. Use critical negative instructions for plausible failure modes.
+
+Veo interfaces may provide a separate negative-prompt field. Omni API does not. Put Omni exclusions in the ordinary prompt.
 
 ## 12. Cultural specificity
 
-Specific detail travels; generic detail does not. Local food, transport, dress, weather and idiom make a story feel true and make audiences elsewhere lean in.
+Specific detail improves authenticity. Ask rather than invent when the user knows the location or custom better. Teach necessary context visually instead of relying on assumed knowledge.
 
-What does not travel is **assumed context**. If a scene depends on knowing a custom, let the scene teach it visually.
-
-When writing for a place you do not know, ask rather than assume. When the user knows the place, follow their detail exactly and do not sand it into something generic.
-
----
-
-*Part of the Google Flow Scripting & Prompting Skill — https://github.com/agbelemi/google-flow-scripting-skill*
+Part of the Google Flow Scripting and Prompting Skill:
+https://github.com/agbelemi/google-flow-scripting-skill

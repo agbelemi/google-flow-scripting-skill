@@ -17,16 +17,16 @@ colour, dramatic directional lighting, strong contrast, expressive
 camera movement, [RATIO]. Not documentary-neutral, not flat.
 ```
 
-Music video tolerates — and rewards — a stronger visual identity than any other format. Push the palette and the lighting further than you would elsewhere.
+Music video tolerates  -  and rewards  -  a stronger visual identity than any other format. Push the palette and the lighting further than you would elsewhere.
 
 ## The music comes first
 
 Ask before writing:
 
-1. **Tempo in BPM, and the track's structure** — intro, verse, chorus, bridge, outro, with timings
+1. **Tempo in BPM, and the track's structure**  -  intro, verse, chorus, bridge, outro, with timings
 2. **Performance, narrative, abstract, or a mix?**
 3. **Is there a performer whose likeness must be exact?**
-4. **Aspect ratio** — 16:9, 9:16, or both
+4. **Aspect ratio**  -  16:9, 9:16, or both
 
 Then **map segments onto the song**. This is the discipline unique to this format: segment boundaries should fall on musical boundaries. At 120 BPM a bar is 2 seconds, so 8-second segments are exactly 4 bars. Say this arithmetic out loud so cuts land on the beat rather than across it.
 
@@ -34,7 +34,7 @@ Note the section each segment belongs to. Choruses want the strongest imagery an
 
 ## What music video rewards
 
-**Repetition with variation.** A chorus that returns with the same setup but escalated — more light, more motion, more people — is the format's core move. Write the escalation explicitly.
+**Repetition with variation.** A chorus that returns with the same setup but escalated  -  more light, more motion, more people  -  is the format's core move. Write the escalation explicitly.
 
 **Motion on the beat.** Beats can specify movement landing on a musical accent: "on the downbeat her head snaps to camera."
 
@@ -46,7 +46,7 @@ Note the section each segment belongs to. Choruses want the strongest imagery an
 
 ## Performer identity
 
-A real performer needs a handle, a reference sheet, and photo-based likeness. State that face and hair match the reference exactly while the styling may change per section — and list wardrobe per section, since music videos change looks constantly. Track which look belongs to which segment; this is the format's most common continuity failure.
+A real performer needs a handle, a reference sheet, and photo-based likeness. State that face and hair match the reference exactly while the styling may change per section  -  and list wardrobe per section, since music videos change looks constantly. Track which look belongs to which segment; this is the format's most common continuity failure.
 
 ## Camera
 
@@ -55,7 +55,7 @@ Take the biggest moves the format allows: whip-pans, speed ramps, orbits, crash 
 ## Rights
 
 - Never generate a real artist's likeness without cleared rights.
-- Never reproduce copyrighted visual work — album art, film stills, another video's signature imagery.
+- Never reproduce copyrighted visual work  -  album art, film stills, another video's signature imagery.
 - Homage to a style is fine; replication of a specific work is not.
 
 ## Format-specific failures
@@ -70,15 +70,15 @@ Take the biggest moves the format allows: whip-pans, speed ramps, orbits, crash 
 
 ## Audio direction
 
-Audio is generated with the video from your prompt text — and for this format, that is usually a problem rather than a feature.
+Audio is generated with the video from your prompt text  -  and for this format, that is usually a problem rather than a feature.
 
 **The track is the audio.** Your final edit lays the real song over the visuals, so any generated sound is discarded.
 
 Practical approach:
 
-- Suppress generated audio where the interface allows it, or write a minimal *not heard* line — no music, no dialogue, no effects — so nothing fights the track later.
+- Suppress generated audio where the interface allows it, or write a minimal *not heard* line  -  no music, no dialogue, no effects  -  so nothing fights the track later.
 - Where a shot needs sync-critical performance, still describe the singing or playing as **action** in the beats. The lip movement and the playing matter visually even though the audio is thrown away.
-- The exception is a diegetic moment — a spoken intro, a phone ringing, an ambient opening before the track drops. Direct those explicitly.
+- The exception is a diegetic moment  -  a spoken intro, a phone ringing, an ambient opening before the track drops. Direct those explicitly.
 
 Everything else about sound in this format is an edit-suite decision, not a prompt decision.
 
