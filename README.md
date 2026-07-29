@@ -299,7 +299,6 @@ Old release records are never deleted. Later corrections are appended as explici
 - [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
 - [CONTRIBUTING.md](CONTRIBUTING.md)
 
-Do not place API keys, personal data, private prompts, or unlicensed source material in scripts, examples, issues, or test fixtures.
 
 ## License
 
