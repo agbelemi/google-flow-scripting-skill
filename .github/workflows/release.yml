@@ -41,7 +41,7 @@ jobs:
         run: python scripts/build_release.py --output dist --skip-tests
 
       - name: Attest release archives
-        uses: actions/attest-build-provenance@v2
+        uses: actions/attest-build-provenance@v4
         with:
           subject-path: |
             dist/google-flow-scripting-skill-v*.zip
