@@ -1,0 +1,22 @@
+{
+  "name": "flow-scripting-studio",
+  "private": true,
+  "type": "module",
+  "description": "Web app for the Google Flow scripting Skill, running on Cloudflare Workers with the Gemini API.",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit",
+    "test": "node test/parity.test.ts",
+    "check": "npm run typecheck && npm test && wrangler deploy --dry-run --outdir .wrangler/dry-run"
+  },
+  "engines": {
+    "node": ">=22.18"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261007.1",
+    "@types/node": "^22.20.5",
+    "typescript": "^5.9.3",
+    "wrangler": "^4.148.0"
+  }
+}

@@ -32,13 +32,13 @@
     },
     {
       "path": ".github/workflows/tests.yml",
-      "sha256": "1ec5364339042d60f40db36a4e7d35816f60924a4fbc538b48b5b2bb289bea5a",
-      "size": 1837
+      "sha256": "14d8c697780ec61ff025d6479e8aea789f1049dc04a0c6dff7a0392ac916e489",
+      "size": 2455
     },
     {
       "path": ".gitignore",
-      "sha256": "11b5c7dc311301e158184e29e7cab1f23c60aba4aabb8a9821b5c1923dc8cfaf",
-      "size": 130
+      "sha256": "05184dd9ab6017087364ede4e5eea0eb6e080268c10c473607f3eaedb81ecc92",
+      "size": 151
     },
     {
       "path": "CHANGELOG.md",
@@ -62,8 +62,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "1f3ae607cf0d958122af6df717fa2abf50bec0f667e1596d14b8e60dc097b701",
-      "size": 9157
+      "sha256": "8ae9d031f2b467bcd24fbab51977ca10060b0bf1e3f9ed465ddfd2cd93771862",
+      "size": 9610
     },
     {
       "path": "SECURITY.md",
@@ -287,8 +287,8 @@
     },
     {
       "path": "scripts/package_utils.py",
-      "sha256": "d6d4fead18b743c523c1099178bf0e9e902ab75f9c1d9809e71e396021a7aaf8",
-      "size": 13314
+      "sha256": "2e5c662b6403d9cdb2386afa1cdc8d0b95c22b9c678359d35f032baa33b94d9a",
+      "size": 13605
     },
     {
       "path": "scripts/start_release.py",
@@ -522,11 +522,11 @@
     },
     {
       "path": "tests/run_tests.py",
-      "sha256": "62537ef1f21f26c1bab2dada9ee4de5eb583378bae6a28d8933275303dc5fec4",
-      "size": 26952
+      "sha256": "dc9b0b565526cc0be6ba5e42ca4cb8c72f841a08c0a52a888ba6f1e769e084b7",
+      "size": 26901
     }
   ],
-  "generated_at": "2026-07-23T23:29:28Z",
+  "generated_at": "2026-10-07T14:13:56Z",
   "package": "google-flow-scripting-skill",
   "schema_version": 1,
   "version": "1.6.0"

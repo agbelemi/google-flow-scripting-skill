@@ -200,6 +200,10 @@ The validator checks:
 
 It does not replace visual review or continuity judgement.
 
+## Web app (Cloudflare Workers + Gemini API)
+
+[`web/`](web/README.md) contains Flow Scripting Studio, a browser app that runs this Skill without an AI coding assistant. Paste your own Gemini API key in its settings, describe the video, and it returns the production package with copy buttons for every prompt. The package is checked by a TypeScript port of `scripts/validate.py` whose results are tested for parity with the Python validator. The app writes prompts only; you still generate images and video in Google Flow. The `web/` folder is not part of the installed Skill package.
+
 ## Specialist roster
 
 ### Core craft

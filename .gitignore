@@ -11,3 +11,5 @@ node_modules/
 /dist/
 *.bak-*
 .installed-manifest.json
+.wrangler/
+.dev.vars

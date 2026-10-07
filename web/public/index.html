@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flow Scripting Studio</title>
+  <meta name="description" content="Tạo bộ prompt storyboard và video cho Google Flow, Veo 3.1 và Gemini Omni Flash bằng Gemini API.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232f6fed'/%3E%3Cpath d='M9 10h14v3H12v3h9v3h-9v5H9z' fill='white'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">F</span>
+      <div>
+        <h1>Flow Scripting Studio</h1>
+        <p class="tagline">Tạo bộ prompt storyboard và video giữ nhất quán nhân vật cho Google Flow</p>
+      </div>
+    </div>
+    <button type="button" id="open-settings" class="btn ghost">
+      <span id="key-dot" class="dot" aria-hidden="true"></span> Cài đặt
+    </button>
+  </header>
+
+  <main class="layout">
+    <form id="profile-form" class="panel form" autocomplete="off">
+      <h2>1. Dự án</h2>
+
+      <label class="field">
+        <span>Ý tưởng video <em>(bắt buộc)</em></span>
+        <textarea name="brief" rows="6" required placeholder="Ví dụ: Một chàng trai bước xuống taxi trước quán cà phê vỉa hè, đeo kính râm và bước đi tự tin trong khi hai cô gái ngồi uống cà phê phía sau..."></textarea>
+      </label>
+
+      <label class="field">
+        <span>Nhân vật, bối cảnh, ghi chú thêm</span>
+        <textarea name="extraNotes" rows="3" placeholder="Ví dụ: Kwame, 30 tuổi, áo sơ mi trắng, giày Oxford đen bóng. Bối cảnh: quán cà phê vỉa hè buổi trưa."></textarea>
+      </label>
+
+      <h2>2. Thông số sản xuất</h2>
+      <div class="grid">
+        <label class="field">
+          <span>Nơi tạo video</span>
+          <select name="surface">
+            <option value="flow">Google Flow</option>
+            <option value="gemini-api">Gemini API</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Model video</span>
+          <select name="model">
+            <option value="veo-3.1-fast">Veo 3.1 Fast</option>
+            <option value="veo-3.1-lite">Veo 3.1 Lite</option>
+            <option value="veo-3.1-quality">Veo 3.1 Quality</option>
+            <option value="veo-3.1">Veo 3.1</option>
+            <option value="omni-flash">Gemini Omni Flash</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Chế độ tạo</span>
+          <select name="mode">
+            <option value="text-to-video">Text to video</option>
+            <option value="first-frame">Khung hình đầu (first frame)</option>
+            <option value="first-last-frame">Khung đầu và cuối (first and last frame)</option>
+            <option value="references-to-video">Ảnh tham chiếu (references / ingredients)</option>
+            <option value="video-edit">Chỉnh sửa video</option>
+            <option value="extend">Kéo dài video (extend)</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Độ dài mỗi đoạn</span>
+          <select name="segmentLength">
+            <option value="3">3 giây</option>
+            <option value="4">4 giây</option>
+            <option value="5">5 giây</option>
+            <option value="6">6 giây</option>
+            <option value="7">7 giây</option>
+            <option value="8" selected>8 giây</option>
+            <option value="9">9 giây</option>
+            <option value="10">10 giây</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Tổng thời lượng (giây)</span>
+          <input name="runtime" type="number" min="3" max="600" step="1" value="24">
+        </label>
+        <label class="field">
+          <span>Tỉ lệ khung hình</span>
+          <select name="aspectRatio">
+            <option value="16:9">16:9 (ngang)</option>
+            <option value="9:16">9:16 (dọc)</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Thể loại</span>
+          <select name="format">
+            <option value="live-action">Phim người đóng</option>
+            <option value="3d-animation">Hoạt hình 3D</option>
+            <option value="2d-animation">Hoạt hình 2D</option>
+            <option value="ads">Quảng cáo</option>
+            <option value="documentary">Phim tài liệu</option>
+            <option value="music-video">Music video</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Nhịp thời gian</span>
+          <select name="beatMode">
+            <option value="exact">Từng giây (0-1s, 1-2s...)</option>
+            <option value="coverage">Phủ kín, độ dài tùy ý</option>
+            <option value="loose">Tự do, đúng thứ tự</option>
+            <option value="off">Không chia mốc giờ</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Âm thanh</span>
+          <select name="audioPolicy">
+            <option value="generated">Để model tạo âm thanh</option>
+            <option value="silence">Im lặng có chủ đích</option>
+            <option value="post">Không tạo, lồng tiếng sau</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Chữ trong hình</span>
+          <select name="textPolicy">
+            <option value="none">Không có chữ</option>
+            <option value="intentional">Có chữ chủ đích</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Ngôn ngữ phần ghi chú</span>
+          <select name="notesLanguage">
+            <option value="vi">Tiếng Việt</option>
+            <option value="en">English</option>
+          </select>
+        </label>
+      </div>
+
+      <label class="field" id="intentional-text-field" hidden>
+        <span>Nội dung chữ, vị trí xuất hiện</span>
+        <input name="intentionalText" type="text" maxlength="500" placeholder='Ví dụ: tấm biển phía trên cửa ghi "CAFE SAIGON"'>
+      </label>
+
+      <p id="profile-warning" class="notice warn" hidden></p>
+      <p class="hint">Prompt luôn được viết bằng tiếng Anh để Flow hiểu tốt nhất. Phần ghi chú cho bạn dùng ngôn ngữ đã chọn.</p>
+
+      <div class="actions">
+        <button type="submit" id="generate" class="btn primary">Tạo bộ prompt</button>
+        <button type="button" id="stop" class="btn" hidden>Dừng</button>
+      </div>
+    </form>
+
+    <section class="panel output" aria-live="polite">
+      <div class="output-head">
+        <div class="tabs" role="tablist">
+          <button type="button" role="tab" class="tab active" data-tab="view" aria-selected="true">Bộ prompt</button>
+          <button type="button" role="tab" class="tab" data-tab="edit" aria-selected="false">Chỉnh sửa</button>
+          <button type="button" role="tab" class="tab" data-tab="check" aria-selected="false">Kiểm tra <span id="check-badge" class="badge" hidden></span></button>
+        </div>
+        <div class="toolbar">
+          <button type="button" id="validate" class="btn small" disabled>Kiểm tra lại</button>
+          <button type="button" id="revise" class="btn small" disabled>AI sửa lỗi</button>
+          <button type="button" id="copy-all" class="btn small" disabled>Sao chép tất cả</button>
+          <button type="button" id="download" class="btn small" disabled>Tải .md</button>
+        </div>
+      </div>
+      <p id="status" class="status"></p>
+
+      <div id="tab-view" class="tab-body" role="tabpanel">
+        <div id="empty" class="empty">
+          <h3>Cách dùng</h3>
+          <ol>
+            <li>Bấm <strong>Cài đặt</strong> và dán Gemini API key của bạn.</li>
+            <li>Nhập ý tưởng và chọn thông số rồi bấm <strong>Tạo bộ prompt</strong>.</li>
+            <li>Xem tab <strong>Kiểm tra</strong>. Nếu có lỗi, bấm <strong>AI sửa lỗi</strong>.</li>
+            <li>Sao chép từng prompt và dán vào Google Flow: ảnh tham chiếu trước, storyboard sau, cuối cùng là video.</li>
+          </ol>
+        </div>
+        <article id="rendered" class="rendered"></article>
+      </div>
+      <div id="tab-edit" class="tab-body" role="tabpanel" hidden>
+        <p class="hint">Bạn có thể sửa trực tiếp rồi bấm <strong>Kiểm tra lại</strong>.</p>
+        <textarea id="editor" spellcheck="false"></textarea>
+      </div>
+      <div id="tab-check" class="tab-body" role="tabpanel" hidden>
+        <div id="check-results"><p class="hint">Chưa có kết quả kiểm tra.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="settings">
+    <form method="dialog" class="dialog-body">
+      <h2>Cài đặt</h2>
+      <label class="field">
+        <span>Gemini API key</span>
+        <div class="input-row">
+          <input id="api-key" type="password" autocomplete="off" spellcheck="false" placeholder="AIza...">
+          <button type="button" id="toggle-key" class="btn small">Hiện</button>
+        </div>
+      </label>
+      <p class="hint">Lấy key miễn phí tại <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a>. Key chỉ được lưu trong trình duyệt này và gửi kèm mỗi yêu cầu tới Gemini, máy chủ của app không lưu lại.</p>
+
+      <label class="field">
+        <span>Model Gemini dùng để viết prompt</span>
+        <div class="input-row">
+          <select id="text-model"></select>
+          <button type="button" id="load-models" class="btn small">Tải danh sách</button>
+        </div>
+      </label>
+      <p id="settings-status" class="status"></p>
+
+      <div class="actions end">
+        <button type="button" id="clear-key" class="btn ghost">Xóa key</button>
+        <button type="button" id="test-key" class="btn">Kiểm tra key</button>
+        <button type="submit" id="save-settings" class="btn primary">Lưu</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>

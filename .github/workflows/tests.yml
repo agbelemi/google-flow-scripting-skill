@@ -43,6 +43,33 @@ jobs:
       - name: Run regression, integration, and integrity tests
         run: python tests/run_tests.py
 
+  web-app:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck, validator parity, and Worker build
+        run: npm run check
+
   release-build-smoke-test:
     runs-on: ubuntu-latest
     steps:

@@ -32,7 +32,12 @@ EXCLUDED_PARTS = {
     ".pytest_cache",
     "__pycache__",
     "dist",
+    "node_modules",
+    ".wrangler",
 }
+# The web app is developed in this repository but is not part of the Skill
+# package that gets installed, released, or manifest-verified.
+EXCLUDED_TOP_LEVEL = {"web"}
 EXCLUDED_SUFFIXES = {".pyc", ".pyo", ".DS_Store"}
 
 
@@ -107,6 +112,8 @@ def sha256_file(path: Path) -> str:
 def is_excluded(path: Path, root: Path) -> bool:
     relative = path.relative_to(root)
     if any(part in EXCLUDED_PARTS for part in relative.parts):
+        return True
+    if relative.parts and relative.parts[0] in EXCLUDED_TOP_LEVEL:
         return True
     if path.name in EXCLUDED_SUFFIXES:
         return True

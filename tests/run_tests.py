@@ -36,6 +36,7 @@ from package_utils import (  # noqa: E402
     SemVer,
     build_manifest,
     find_local_modifications,
+    is_excluded,
     parse_sha256sums,
     safe_extract_tar,
     safe_extract_zip,
@@ -161,10 +162,9 @@ def failing_checks(output: str) -> list[str]:
 
 
 def package_text_files() -> list[Path]:
-    excluded = {".git", "__pycache__", "dist"}
     result: list[Path] = []
     for path in ROOT.rglob("*"):
-        if not path.is_file() or any(part in excluded for part in path.parts):
+        if not path.is_file() or is_excluded(path, ROOT):
             continue
         try:
             path.read_text(encoding="utf-8")
